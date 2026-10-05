@@ -1,0 +1,109 @@
+---
+import Tick from './marks/Tick.astro';
+
+const points = [
+  'Changes your guide asks for, right up to final submission',
+  'Help getting the demo running before every review',
+  'Reinstallation if your laptop crashes or you switch laptops',
+  "Quick answers on WhatsApp when you're stuck on a part of the code",
+  'A mock viva before the real one',
+];
+---
+
+<section class="sec" id="support" aria-labelledby="support-title">
+  <div class="wrap grid">
+    <div>
+      <div class="sec-head">
+        <h2 id="support-title"><span class="dot" aria-hidden="true"></span>We stay until your viva is over</h2>
+        <p>
+          Guides change their minds and panels ask for one more feature. Somehow the laptop always dies the week of the review. We help
+          with all of it until your viva is done.
+        </p>
+      </div>
+      <ul>
+        {
+          points.map((p) => (
+            <li>
+              <Tick />
+              <span>{p}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <aside class="sticky-note" aria-label="A note">
+      <p>Laptop crashed the night before review 2?</p>
+      <p class="big">Call us.</p>
+      <p class="small">Message us anyway. We'll get it running again before the review.</p>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: 48px;
+  }
+  @media (min-width: 1000px) {
+    .grid {
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+      gap: 72px;
+      align-items: center;
+    }
+  }
+  ul {
+    display: grid;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    align-items: start;
+    font-size: 1.08rem;
+  }
+  li :global(.tick) {
+    margin-top: 2px;
+  }
+  .sticky-note {
+    position: relative;
+    justify-self: center;
+    width: min(100%, 320px);
+    padding: 34px 28px 30px;
+    background: #f7e48b;
+    box-shadow:
+      0 1px 1px rgba(31, 42, 68, 0.12),
+      0 24px 30px -22px rgba(31, 42, 68, 0.6);
+    transform: rotate(-2.4deg);
+    font-family: var(--f-hand);
+    color: #2b2a24;
+    font-size: 1.3rem;
+    line-height: 1.3;
+  }
+  /* a strip of tape */
+  .sticky-note::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    width: 110px;
+    height: 28px;
+    margin-left: -55px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(31, 42, 68, 0.08);
+    transform: rotate(3deg);
+  }
+  .big {
+    margin-top: 6px;
+    font-size: 2.3rem;
+    line-height: 1.1;
+    color: var(--red);
+  }
+  .small {
+    margin-top: 12px;
+    font-size: 1.08rem;
+  }
+</style>

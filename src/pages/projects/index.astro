@@ -1,0 +1,167 @@
+---
+import Base from '../../layouts/Base.astro';
+import Register from '../../components/Register.astro';
+import { areas, areaCount, projects } from '../../data/projects';
+
+const n = projects.length;
+---
+
+<Base
+  title="All projects"
+  description={`${n} final-year and mini project ideas in web, Android, machine learning, AI, data, security, blockchain and cloud. Every one comes with code, report, PPT and viva prep.`}
+>
+  <section class="sec cat" aria-labelledby="cat-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">The register</p>
+        <h1 id="cat-title"><span class="dot filled" aria-hidden="true"></span>{n} projects, ready to build with you</h1>
+        <p>
+          We can change any of them: swap the stack, add a module, or shrink it into a mini project. Don't see what you need?{' '}
+          <a href="/#idea">Bring your own idea</a>.
+        </p>
+      </div>
+
+      <div class="controls" id="controls" hidden>
+        <label class="sr-only" for="q">Search projects</label>
+        <input id="q" type="search" placeholder="Search: face, Flutter, chatbot, attendance…" autocomplete="off" />
+        <div class="chips" role="group" aria-label="Filter by area">
+          <button class="chip" type="button" data-area="" aria-pressed="true">All <span class="count">{n}</span></button>
+          {
+            areas.map((a) => (
+              <button class="chip" type="button" data-area={a.key} aria-pressed="false">
+                {a.label} <span class="count">{areaCount(a.key)}</span>
+              </button>
+            ))
+          }
+        </div>
+        <div class="chips" role="group" aria-label="Filter by level">
+          <button class="chip" type="button" data-level="" aria-pressed="true">Any level</button>
+          <button class="chip" type="button" data-level="Mini" aria-pressed="false">Mini</button>
+          <button class="chip" type="button" data-level="Major" aria-pressed="false">Major</button>
+        </div>
+        <p class="count-line mono" id="count" aria-live="polite">Showing {n} of {n}</p>
+      </div>
+
+      <Register items={projects} listId="register-list" />
+      <p class="empty" id="empty" hidden>
+        Nothing matches that. <a href="/#idea">Tell us the idea</a> and we'll build it anyway.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const controls = document.getElementById('controls')!;
+  const list = document.getElementById('register-list')!;
+  const rows = Array.from(list.querySelectorAll<HTMLElement>('.reg-row'));
+  const q = document.getElementById('q') as HTMLInputElement;
+  const count = document.getElementById('count')!;
+  const empty = document.getElementById('empty')!;
+  const areaBtns = Array.from(controls.querySelectorAll<HTMLButtonElement>('[data-area]'));
+  const levelBtns = Array.from(controls.querySelectorAll<HTMLButtonElement>('[data-level]'));
+
+  const params = new URLSearchParams(location.search);
+  const known = (btns: HTMLButtonElement[], key: 'area' | 'level', v: string | null) =>
+    v && btns.some((b) => b.dataset[key] === v) ? v : '';
+  let area = known(areaBtns, 'area', params.get('area'));
+  let level = known(levelBtns, 'level', params.get('level'));
+  q.value = params.get('q') ?? '';
+
+  const apply = () => {
+    const terms = q.value.toLowerCase().trim().split(/\s+/).filter(Boolean);
+    let shown = 0;
+    for (const r of rows) {
+      const ok =
+        (!area || r.dataset.area === area) &&
+        (!level || r.dataset.level === level) &&
+        terms.every((t) => r.dataset.text!.includes(t));
+      r.hidden = !ok;
+      if (ok) shown++;
+    }
+    count.textContent = `Showing ${shown} of ${rows.length}`;
+    empty.hidden = shown > 0;
+    areaBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.area === area)));
+    levelBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.level === level)));
+
+    const p = new URLSearchParams();
+    if (area) p.set('area', area);
+    if (level) p.set('level', level);
+    if (q.value.trim()) p.set('q', q.value.trim());
+    const qs = p.toString();
+    history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
+  };
+
+  areaBtns.forEach((b) =>
+    b.addEventListener('click', () => {
+      area = b.dataset.area ?? '';
+      apply();
+    }),
+  );
+  levelBtns.forEach((b) =>
+    b.addEventListener('click', () => {
+      level = b.dataset.level ?? '';
+      apply();
+    }),
+  );
+  q.addEventListener('input', apply);
+
+  controls.hidden = false;
+  apply();
+</script>
+
+<style>
+  .cat {
+    padding-top: clamp(28px, 5vw, 64px);
+  }
+  h1 {
+    font-size: clamp(2.1rem, 1.4rem + 3vw, 3.9rem);
+    max-width: 14em;
+  }
+  .controls {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .controls[hidden] {
+    display: none;
+  }
+  input[type='search'] {
+    width: min(100%, 520px);
+    height: 50px;
+    padding: 0 14px;
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    background: var(--paper-2);
+    color: var(--ink);
+    font: 1rem var(--f-body);
+  }
+  input[type='search']:focus {
+    outline: 2.5px solid var(--red);
+    outline-offset: 2px;
+  }
+  @media (max-width: 759px) {
+    /* one swipeable row of area chips instead of five wrapped rows */
+    .controls .chips:first-of-type {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      margin-right: calc(-1 * var(--pad-r));
+      padding-right: var(--pad-r);
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .controls .chips:first-of-type::-webkit-scrollbar {
+      display: none;
+    }
+    .controls .chip {
+      flex: none;
+    }
+  }
+  .count-line {
+    font-size: 0.8rem;
+    color: var(--ink-2);
+  }
+  .empty {
+    padding: 28px 0;
+    font-size: 1.1rem;
+  }
+</style>

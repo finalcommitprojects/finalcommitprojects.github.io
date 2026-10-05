@@ -1,0 +1,38 @@
+---
+import { site, wa } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<div class="mbar">
+  <a class="btn btn-wa" href={wa()}><Icon name="wa" />WhatsApp us</a>
+  <a class="btn btn-line" href={site.phoneHref}><Icon name="phone" />Call</a>
+</div>
+
+<style>
+  .mbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 8px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: var(--paper-2);
+    border-top: 1px solid var(--rule);
+    box-shadow: 0 -8px 20px -16px rgba(31, 42, 68, 0.5);
+  }
+  .mbar .btn {
+    min-height: 48px;
+    padding-inline: 0.6em;
+  }
+  .mbar .btn-line {
+    background: var(--paper-2);
+  }
+  @media (min-width: 760px) {
+    .mbar {
+      display: none;
+    }
+  }
+</style>

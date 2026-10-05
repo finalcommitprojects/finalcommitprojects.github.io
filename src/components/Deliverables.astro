@@ -1,0 +1,115 @@
+---
+import Tick from './marks/Tick.astro';
+
+const items: [string, string][] = [
+  ['Source code', 'clean, commented and yours to keep'],
+  ['Database and sample data', 'set up and ready for the demo'],
+  ['Project report', "in your college's format"],
+  ['PPT for every review', 'review 1, review 2 and the final'],
+  ['Synopsis and abstract', 'for your guide to approve'],
+  ['UML, DFD and ER diagrams', 'editable files, not screenshots'],
+  ['Demo video', 'the full flow, recorded'],
+  ['Setup on your laptop', 'over AnyDesk or Google Meet'],
+  ['Code walkthrough', 'until you can explain it back'],
+  ['Viva questions', 'with answers, for your project'],
+  ['Research paper', 'IEEE format, if you need one'],
+];
+---
+
+<section class="sec" id="get" aria-labelledby="get-title">
+  <div class="wrap grid">
+    <div class="sec-head intro">
+      <h2 id="get-title"><span class="dot" aria-hidden="true"></span>What comes with every project</h2>
+      <p>
+        You get everything your college asks for at submission, plus help getting ready to face the panel.
+      </p>
+      <p class="note aside" aria-hidden="true">yes, the report too.<br />all 60 pages of it.</p>
+    </div>
+
+    <div class="sheet checklist">
+      <p class="sheet-head"><span class="mono">Submission checklist</span><span class="note">all done</span></p>
+      <ul>
+        {
+          items.map(([name, detail]) => (
+            <li>
+              <Tick />
+              <span>
+                <strong>{name}</strong> <span class="detail">{detail}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: 8px;
+  }
+  @media (min-width: 1000px) {
+    .grid {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 64px;
+      align-items: start;
+    }
+  }
+  .aside {
+    transform: rotate(-2deg);
+    transform-origin: left;
+    margin-top: 6px;
+  }
+  .checklist {
+    padding: 32px 22px 32px 0;
+  }
+  /* red margin inside the sheet; the ticks live in it */
+  .checklist::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 46px;
+    width: 1.5px;
+    background: var(--red-soft);
+  }
+  .sheet-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-left: 62px;
+  }
+  .sheet-head .mono {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .sheet-head .note {
+    font-size: 1.15rem;
+    line-height: 32px;
+    transform: rotate(-3deg);
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr);
+    align-items: start;
+  }
+  li :global(.tick) {
+    justify-self: center;
+    margin-top: 2px;
+    margin-left: -16px;
+  }
+  strong {
+    font-weight: 600;
+  }
+  .detail {
+    color: var(--ink-2);
+  }
+</style>
