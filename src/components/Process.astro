@@ -1,0 +1,144 @@
+---
+const steps = [
+  ['You message us', 'with a project from the register, or your own idea.', 'Day 1'],
+  ['We get on a call', '15 to 20 minutes to fix the scope, tech stack, deadline and price.', 'Day 1 or 2'],
+  ['Synopsis for your guide', 'We write the synopsis and abstract so your guide can approve the topic.', 'In 2 to 3 days'],
+  ['We build it in stages', 'You see a working demo before each review, so nothing is a surprise at the end.', 'Weeks 1 to 5'],
+  ['Report, PPT and diagrams', "In your college's format, ready to print and bind.", 'Before the final review'],
+  ['Setup, walkthrough, mock viva', "We install it on your laptop, take you through the code and ask you the panel's questions.", 'Before your viva'],
+];
+---
+
+<section class="sec" id="how" aria-labelledby="how-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="how-title"><span class="dot" aria-hidden="true"></span>How it works</h2>
+      <p>Every project goes through the same six steps. We've laid them out like the index page of a record book, and each one gets signed off before the next one starts.</p>
+    </div>
+
+    <div class="index">
+      <div class="ix-head" aria-hidden="true"><span>S.No</span><span>What happens</span><span>When</span><span>Sign</span></div>
+      <ol>
+        {
+          steps.map(([what, detail, when], i) => (
+            <li>
+              <span class="ix-no mono" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <p class="ix-what">
+                <strong>{what}</strong> <span class="detail">{detail}</span>
+              </p>
+              <span class="ix-when mono">{when}</span>
+              <span class="ix-sign" aria-hidden="true">✓</span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+    <p class="note pay">You pay in parts as the work moves along.</p>
+  </div>
+</section>
+
+<style>
+  .index {
+    --no-w: 64px;
+    border: 1.5px solid var(--ink);
+    background: var(--paper-2);
+  }
+  .ix-head,
+  li {
+    display: grid;
+    grid-template-columns: var(--no-w) minmax(0, 1fr) 200px 76px;
+  }
+  .ix-head span,
+  li > * {
+    padding: 14px 16px;
+  }
+  .ix-head span + span,
+  li > * + * {
+    border-left: 1px solid var(--rule-strong);
+  }
+  .ix-head {
+    border-bottom: 1.5px solid var(--ink);
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .ix-head span {
+    padding-block: 10px;
+  }
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li + li {
+    border-top: 1px solid var(--rule-strong);
+  }
+  .ix-no {
+    color: var(--red);
+  }
+  .ix-what {
+    max-width: none;
+  }
+  .detail {
+    color: var(--ink-2);
+  }
+  .ix-when {
+    font-size: 0.85rem;
+    color: var(--ink-2);
+  }
+  .ix-sign {
+    font-family: var(--f-hand);
+    color: var(--red);
+    font-size: 1.6rem;
+    line-height: 1;
+    text-align: center;
+  }
+  li:nth-child(odd) .ix-sign {
+    transform: rotate(-6deg);
+  }
+  li:nth-child(3n) .ix-sign {
+    transform: rotate(5deg) translateX(3px);
+  }
+  .pay {
+    margin-top: 22px;
+    transform: rotate(-1.5deg);
+    transform-origin: left;
+  }
+  @media (max-width: 759px) {
+    .index {
+      --no-w: 46px;
+    }
+    .ix-head {
+      display: none;
+    }
+    li {
+      grid-template-columns: var(--no-w) minmax(0, 1fr) 40px;
+      grid-template-areas:
+        'no what sign'
+        'no when sign';
+    }
+    li > * {
+      border: 0 !important;
+    }
+    li > .ix-no {
+      grid-area: no;
+      padding: 13px 0 0 12px;
+    }
+    li > .ix-what {
+      grid-area: what;
+      padding: 12px 4px 0 0;
+    }
+    li > .ix-when {
+      grid-area: when;
+      padding: 4px 0 14px;
+      font-size: 0.78rem;
+    }
+    li > .ix-sign {
+      grid-area: sign;
+      align-self: center;
+      padding: 0;
+    }
+  }
+</style>

@@ -1,0 +1,66 @@
+<!doctype html>
+<!-- Source for public/og.png (1200x630). Re-render with scripts/render-og.mjs after editing. -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: 'Fraunces'; src: url(../node_modules/@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2) format('woff2'); font-weight: 100 900; }
+  @font-face { font-family: 'Plex'; src: url(../node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2) format('woff2'); font-weight: 500; }
+  @font-face { font-family: 'Plex'; src: url(../node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
+  @font-face { font-family: 'Mono'; src: url(../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2) format('woff2'); font-weight: 500; }
+  @font-face { font-family: 'Mono'; src: url(../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-600-normal.woff2) format('woff2'); font-weight: 600; }
+  @font-face { font-family: 'Kalam'; src: url(../node_modules/@fontsource/kalam/files/kalam-latin-400-normal.woff2) format('woff2'); }
+  html, body { margin: 0; }
+  .card {
+    position: relative; width: 1200px; height: 630px; overflow: hidden;
+    background: #f6f1e7;
+    background-image: linear-gradient(to bottom, transparent 47px, rgba(74,110,170,.16) 47px, rgba(74,110,170,.16) 48px, transparent 48px);
+    background-size: 100% 48px;
+    color: #1f2a44; font-family: 'Plex', sans-serif;
+  }
+  .card::before { content: ''; position: absolute; top: 0; bottom: 0; left: 92px; width: 2px; background: rgba(196,54,44,.6); }
+  .dot { position: absolute; left: 85px; width: 16px; height: 16px; border-radius: 50%; background: #c4362c; }
+  .inner { position: absolute; left: 140px; top: 58px; right: 70px; }
+  .wm { display: flex; align-items: center; gap: 12px; font-family: 'Fraunces'; font-weight: 650; font-size: 34px; letter-spacing: -0.02em; }
+  h1 { margin: 52px 0 0; font-family: 'Fraunces'; font-weight: 600; font-size: 78px; line-height: 1.02; letter-spacing: -0.025em; max-width: 720px; text-wrap: balance; font-size: 74px; }
+  .circled { position: relative; display: inline-block; }
+  .circled svg { position: absolute; left: -6%; top: -16%; width: 112%; height: 136%; overflow: visible; }
+  .circled path { fill: none; stroke: #c4362c; stroke-width: 4; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+  .foot { position: absolute; left: 140px; right: 70px; bottom: 54px; display: flex; align-items: center; gap: 28px; white-space: nowrap; font-size: 26px; font-weight: 500; color: #4a5470; }
+  .wa { display: inline-flex; align-items: center; gap: 12px; padding: 14px 22px; border-radius: 8px; background: #1d7a4c; color: #fff; font-weight: 600; }
+  .wa svg { width: 28px; height: 28px; }
+  .note { position: absolute; right: 70px; top: 300px; font-family: 'Kalam'; color: #c4362c; font-size: 32px; line-height: 1.25; text-align: center; transform: rotate(-5deg); }
+  .stamp { position: absolute; right: 56px; top: 150px; width: 280px; color: #c4362c; opacity: .9; transform: rotate(-9deg); mix-blend-mode: multiply; }
+</style>
+</head>
+<body>
+<div class="card">
+  <span class="dot" style="top: 70px"></span>
+  <div class="inner">
+    <div class="wm">
+      <svg width="20" height="36" viewBox="0 0 18 30"><path d="M9 0v9.5M9 20.5V30" stroke="#c4362c" stroke-width="2"/><circle cx="9" cy="15" r="5.2" fill="none" stroke="#1f2a44" stroke-width="2.6"/></svg>
+      Final Commit
+    </div>
+    <h1>Final-year projects, built with you and <span class="circled">explained<svg viewBox="0 0 200 64" preserveAspectRatio="none"><path d="M150 9 C 108 2, 36 3, 13 21 C -3 35, 20 56, 92 58 C 160 60, 199 48, 195 30 C 192 14, 152 6, 98 7 C 72 8, 50 11, 36 16"/></svg></span> till your viva.</h1>
+  </div>
+  <svg class="stamp" viewBox="0 0 236 100">
+    <defs>
+      <filter id="r" x="-4%" y="-6%" width="108%" height="112%"><feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" seed="11" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+      <filter id="s" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="4"/><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -3.6 0 0 0 2.95"/></filter>
+      <mask id="m" maskUnits="userSpaceOnUse" x="0" y="0" width="236" height="100"><rect width="236" height="100" filter="url(#s)"/></mask>
+    </defs>
+    <g mask="url(#m)"><g filter="url(#r)">
+      <rect x="5" y="5" width="226" height="90" rx="12" fill="none" stroke="currentColor" stroke-width="4"/>
+      <rect x="13" y="13" width="210" height="74" rx="7" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <text x="118" y="57" text-anchor="middle" fill="currentColor" font-family="Mono" font-weight="600" font-size="31" letter-spacing="2.5">VIVA READY</text>
+      <text x="118" y="76" text-anchor="middle" fill="currentColor" font-family="Mono" font-weight="500" font-size="10" letter-spacing="3.2">FINAL COMMIT · CHECKED</text>
+    </g></g>
+  </svg>
+  <div class="foot">
+    <span class="wa"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>+91 81971 12324</span>
+    <span>77 projects, or bring your own idea</span>
+  </div>
+  <p class="note">code, report, PPT<br>and viva prep</p>
+</div>
+</body>
+</html>

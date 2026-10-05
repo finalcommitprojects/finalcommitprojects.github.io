@@ -1,0 +1,45 @@
+---
+import { areas, areaCount, projects } from '../data/projects';
+import Icon from './Icon.astro';
+import Register from './Register.astro';
+
+const featured = projects.filter((p) => p.featured);
+---
+
+<section class="sec" id="projects" aria-labelledby="projects-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="projects-title"><span class="dot" aria-hidden="true"></span>From the register</h2>
+      <p>
+        A few to start with. The full register has {projects.length} projects in {areas.length} areas, and we can change any of them
+        to fit your syllabus or what your guide wants.
+      </p>
+    </div>
+
+    <Register items={featured} />
+
+    <div class="browse">
+      <ul class="chips" aria-label="Browse by area">
+        {
+          areas.map((a) => (
+            <li>
+              <a class="chip" href={`/projects/?area=${a.key}`}>
+                {a.label} <span class="count">{areaCount(a.key)}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a class="btn" href="/projects/">Open the full register <Icon name="arrow" /></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .browse {
+    display: grid;
+    gap: 24px;
+    justify-items: start;
+    margin-top: 32px;
+  }
+</style>

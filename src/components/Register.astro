@@ -1,0 +1,149 @@
+---
+import { areaLabel, no, type Project } from '../data/projects';
+
+interface Props {
+  items: Project[];
+  listId?: string;
+}
+const { items, listId } = Astro.props;
+---
+
+<div class="register">
+  <div class="reg-head" aria-hidden="true">
+    <span>No.</span><span>Project</span><span>Area</span><span>Built with</span><span>Level</span>
+  </div>
+  <ul class="reg-list" id={listId}>
+    {
+      items.map((p) => (
+        <li
+          class="reg-row"
+          data-area={p.area}
+          data-level={p.level}
+          data-text={[p.title, areaLabel(p.area), p.stack.join(' '), p.summary].join(' ').toLowerCase()}
+        >
+          <a href={`/projects/${p.slug}/`}>
+            <span class="reg-no mono">
+              <span class="sr-only">No. </span>
+              {no(p.id)}
+            </span>
+            <span class="reg-title">{p.title}</span>
+            <span class="reg-meta">
+              <span class="reg-area">{areaLabel(p.area)}</span>
+              <span class="reg-stack mono">{p.stack.slice(0, 3).join(', ')}</span>
+              <span class="reg-level">{p.level}</span>
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .register {
+    --no-w: 64px;
+    border-top: 2px solid var(--ink);
+  }
+  .reg-head,
+  .reg-row a {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--no-w) minmax(0, 1.55fr) minmax(0, 0.85fr) minmax(0, 1.15fr) 58px;
+    gap: 0 20px;
+    align-items: baseline;
+  }
+  /* ledger rule after the No. column */
+  .reg-head::before,
+  .reg-row a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--no-w) - 10px);
+    width: 1.5px;
+    background: var(--red-soft);
+  }
+  .reg-head {
+    padding: 10px 0 8px;
+    border-bottom: 3px double var(--ink);
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .reg-head span:first-child,
+  .reg-no {
+    padding-left: 2px;
+  }
+  .reg-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .reg-row a {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--rule-strong);
+    text-decoration: none;
+    transition: background-color 0.12s;
+  }
+  .reg-row a:hover {
+    background: var(--hl);
+  }
+  .reg-row a:hover .reg-title {
+    text-decoration: underline;
+    text-decoration-color: var(--red);
+    text-underline-offset: 3px;
+  }
+  .reg-no {
+    color: var(--red);
+    font-size: 0.92rem;
+  }
+  .reg-title {
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .reg-meta {
+    display: contents;
+  }
+  .reg-area,
+  .reg-level {
+    font-size: 0.95rem;
+    color: var(--ink-2);
+  }
+  .reg-stack {
+    font-size: 0.82rem;
+    color: var(--ink-2);
+  }
+  @media (max-width: 759px) {
+    .register {
+      --no-w: 50px;
+    }
+    .reg-head {
+      display: none;
+    }
+    .reg-row a {
+      grid-template-columns: var(--no-w) minmax(0, 1fr);
+      padding: 13px 0;
+    }
+    .reg-meta {
+      display: block;
+      grid-column: 2;
+      margin-top: 3px;
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+    .reg-area,
+    .reg-level {
+      font-size: inherit;
+    }
+    .reg-stack {
+      font-size: 0.78rem;
+    }
+    .reg-meta > span + span::before {
+      content: ' · ';
+      font-family: var(--f-body);
+      color: var(--ink-3);
+    }
+  }
+</style>

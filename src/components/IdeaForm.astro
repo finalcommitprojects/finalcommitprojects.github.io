@@ -1,0 +1,222 @@
+---
+import { site, mailto } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<section class="sec" id="idea" aria-labelledby="idea-title">
+  <div class="wrap grid">
+    <div class="sec-head">
+      <h2 id="idea-title"><span class="dot" aria-hidden="true"></span>Have your own idea?</h2>
+      <p>
+        Half an idea is fine, and so is a base paper your guide handed you with no other instructions. Fill in the blanks below and
+        WhatsApp opens with the message already written, so all you do is press send.
+      </p>
+      <p class="privacy">Nothing is saved on this website. The message goes straight from your phone to ours.</p>
+    </div>
+
+    <form class="sheet form" id="idea-form" data-wa={site.whatsapp} data-email={site.email} novalidate>
+      <p>
+        Hi, I'm studying{' '}
+        <label class="sr-only" for="f-course">Course and branch</label>
+        <input id="f-course" name="course" placeholder="B.Tech CSE" size="12" autocomplete="off" />{' '}
+        in{' '}
+        <label class="sr-only" for="f-year">Year</label>
+        <select id="f-year" name="year">
+          <option>final year</option>
+          <option>3rd year</option>
+          <option>2nd year</option>
+          <option>1st year</option>
+          <option>PG (M.Tech / MCA / M.Sc)</option>
+        </select>{' '}
+        at{' '}
+        <label class="sr-only" for="f-college">College or university</label>
+        <input id="f-college" name="college" placeholder="your college" size="15" autocomplete="off" />.
+      </p>
+
+      <p><label for="f-idea">My project idea:</label></p>
+      <textarea id="f-idea" name="idea" rows="4" required aria-describedby="idea-error"
+        placeholder="A few lines is enough. What should it do, and who uses it?"></textarea>
+
+      <p>
+        I'd like to build it with{' '}
+        <label class="sr-only" for="f-stack">Preferred technology</label>
+        <input id="f-stack" name="stack" placeholder="anything you suggest" size="17" autocomplete="off" />{' '}
+        and I need it by{' '}
+        <label class="sr-only" for="f-deadline">Deadline</label>
+        <input id="f-deadline" name="deadline" placeholder="date of review" size="13" autocomplete="off" />.
+      </p>
+      <p>
+        <label for="f-paper">Base paper from my guide:</label>{' '}
+        <select id="f-paper" name="paper">
+          <option value="no">no</option>
+          <option value="yes">yes, I'll send it</option>
+        </select>
+      </p>
+
+      <p class="error" id="idea-error" role="alert" hidden>Write a line or two about your idea first.</p>
+
+      <div class="actions">
+        <button class="btn btn-wa" type="submit"><Icon name="wa" />Send on WhatsApp</button>
+        <a class="btn btn-line" id="idea-email" href={mailto('Project idea')}><Icon name="mail" />Email it instead</a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('idea-form') as HTMLFormElement | null;
+  if (form) {
+    const field = (name: string) =>
+      ((form.elements.namedItem(name) as HTMLInputElement | null)?.value ?? '').trim();
+    const idea = form.querySelector<HTMLTextAreaElement>('#f-idea')!;
+    const error = form.querySelector<HTMLElement>('#idea-error')!;
+    const emailLink = form.querySelector<HTMLAnchorElement>('#idea-email')!;
+
+    const message = () => {
+      const course = field('course');
+      const college = field('college');
+      const lines = ['Hi Final Commit, I have a project idea.', ''];
+      lines.push(`Course: ${course || '-'} (${field('year')})`);
+      if (college) lines.push(`College: ${college}`);
+      lines.push(`Idea: ${field('idea')}`);
+      lines.push(`Tech: ${field('stack') || 'open to suggestions'}`);
+      if (field('deadline')) lines.push(`Deadline: ${field('deadline')}`);
+      lines.push(`Base paper from guide: ${field('paper') === 'yes' ? "yes, I'll send it" : 'no'}`);
+      return lines.join('\n');
+    };
+
+    const needsIdea = () => {
+      if (field('idea')) return false;
+      error.hidden = false;
+      idea.focus();
+      return true;
+    };
+
+    idea.addEventListener('input', () => (error.hidden = true));
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (needsIdea()) return;
+      const url = `https://wa.me/${form.dataset.wa}?text=${encodeURIComponent(message())}`;
+      if (!window.open(url, '_blank', 'noopener')) window.location.href = url;
+    });
+
+    emailLink.addEventListener('click', (e) => {
+      if (needsIdea()) {
+        e.preventDefault();
+        return;
+      }
+      emailLink.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent('Project idea')}&body=${encodeURIComponent(message())}`;
+    });
+  }
+</script>
+
+<style>
+  .grid {
+    display: grid;
+    gap: 8px;
+  }
+  @media (min-width: 1000px) {
+    .grid {
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: 64px;
+      align-items: start;
+    }
+  }
+  .privacy {
+    font-size: 0.92rem;
+  }
+  .form {
+    padding: 32px clamp(18px, 4vw, 40px);
+    font-size: 1.05rem;
+  }
+  .form p {
+    margin: 0;
+  }
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: var(--ballpoint);
+  }
+  input,
+  select {
+    height: 30px;
+    max-width: 100%;
+    padding: 0 4px;
+    border: 0;
+    border-bottom: 1.5px dotted var(--ink-2);
+    border-radius: 0;
+    background: transparent;
+    font-family: var(--f-hand);
+    font-size: 1.2rem;
+    line-height: 30px;
+    vertical-align: baseline;
+  }
+  select {
+    -webkit-appearance: none;
+    appearance: none;
+    padding-right: 22px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%232a3f9d' stroke-width='1.6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+    background-size: 11px;
+    cursor: pointer;
+  }
+  ::placeholder {
+    color: rgba(42, 63, 157, 0.42);
+    opacity: 1;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-bottom-color: var(--red);
+    border-bottom-style: solid;
+  }
+  textarea {
+    display: block;
+    width: 100%;
+    min-height: 128px;
+    margin: 0 0 32px;
+    padding: 0 6px;
+    border: 0;
+    border-left: 2px solid var(--rule-blue);
+    background-color: var(--paper-2);
+    background-image: linear-gradient(
+      to bottom,
+      transparent 23px,
+      var(--rule-blue) 23px,
+      var(--rule-blue) 24px,
+      transparent 24px
+    );
+    background-size: 100% 32px;
+    background-attachment: local;
+    font-family: var(--f-hand);
+    font-size: 1.2rem;
+    line-height: 32px;
+    resize: vertical;
+  }
+  textarea:focus {
+    border-left-color: var(--red);
+  }
+  .error {
+    color: var(--red);
+    font-weight: 600;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+    line-height: 1.1;
+  }
+  @media (max-width: 520px) {
+    input {
+      width: 100%;
+    }
+    .actions .btn {
+      flex: 1 1 100%;
+    }
+  }
+</style>

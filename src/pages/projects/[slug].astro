@@ -1,0 +1,217 @@
+---
+import Base from '../../layouts/Base.astro';
+import Register from '../../components/Register.astro';
+import Icon from '../../components/Icon.astro';
+import Tick from '../../components/marks/Tick.astro';
+import { areaLabel, no, projects, type Project } from '../../data/projects';
+import { site, wa } from '../../data/site';
+
+export function getStaticPaths() {
+  return projects.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+
+interface Props {
+  p: Project;
+}
+const { p } = Astro.props;
+const related = projects.filter((x) => x.area === p.area && x.id !== p.id).slice(0, 4);
+const ask = wa(`Hi ${site.name}, I'm interested in project No. ${no(p.id)}: ${p.title}. Can you tell me more?`);
+---
+
+<Base
+  title={`${p.title} project`}
+  description={`${p.title}: ${p.summary} A ${p.level.toLowerCase()} project with source code, report, PPT and viva prep.`}
+>
+  <article class="sec proj" aria-labelledby="p-title">
+    <div class="wrap">
+      <nav class="crumbs mono" aria-label="Breadcrumb">
+        <a href="/projects/">Register</a> / <a href={`/projects/?area=${p.area}`}>{areaLabel(p.area)}</a> /{' '}
+        <span aria-current="page">No. {no(p.id)}</span>
+      </nav>
+
+      <div class="grid">
+        <div class="main">
+          <p class="pno mono"><span class="dot filled" aria-hidden="true"></span>No. {no(p.id)} · {p.level} project</p>
+          <h1 id="p-title">{p.title}</h1>
+          <p class="lede">{p.summary}</p>
+
+          <h2>What it does</h2>
+          <ul class="feat">
+            {
+              p.features.map((f) => (
+                <li>
+                  <Tick />
+                  <span>{f}</span>
+                </li>
+              ))
+            }
+          </ul>
+
+          <h2>Built with</h2>
+          <ul class="tags">{p.stack.map((s) => <li>{s}</li>)}</ul>
+
+          <h2>Can it be changed?</h2>
+          <p class="body">
+            Yes. If your guide wants a different stack or an extra module, or you need a smaller version for a mini project, tell us and
+            we'll adjust it.
+          </p>
+        </div>
+
+        <aside class="icard" aria-label="Project details">
+          <p class="icard-head hand" aria-hidden="true">Project No. {no(p.id)}</p>
+          <dl>
+            <div><dt>Level</dt><dd>{p.level}</dd></div>
+            <div><dt>Area</dt><dd>{areaLabel(p.area)}</dd></div>
+            <div><dt>Suits</dt><dd>{p.suits.join(', ')}</dd></div>
+          </dl>
+          <p class="comes">
+            Comes with the source code, database, report in your college's format, PPT, diagrams, demo video, setup on your laptop, a
+            code walkthrough and viva questions.
+          </p>
+          <div class="ask">
+            <a class="btn btn-wa" href={ask}><Icon name="wa" />Ask about No. {no(p.id)}</a>
+            <a class="btn btn-line" href={site.phoneHref}><Icon name="phone" />Call {site.phone}</a>
+          </div>
+          <p class="note">price depends on scope.<br />asking is free.</p>
+        </aside>
+      </div>
+
+      {
+        related.length > 0 && (
+          <section class="related" aria-labelledby="rel-title">
+            <h2 id="rel-title">More in {areaLabel(p.area)}</h2>
+            <Register items={related} />
+          </section>
+        )
+      }
+    </div>
+  </article>
+</Base>
+
+<style>
+  .proj {
+    padding-top: clamp(24px, 4vw, 48px);
+  }
+  .crumbs {
+    margin-bottom: 28px;
+    font-size: 0.8rem;
+    color: var(--ink-2);
+  }
+  .grid {
+    display: grid;
+    gap: 44px;
+  }
+  @media (min-width: 1000px) {
+    .grid {
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr);
+      gap: 72px;
+      align-items: start;
+    }
+  }
+  .main {
+    display: grid;
+    gap: 18px;
+    justify-items: start;
+  }
+  .pno {
+    font-size: 0.85rem;
+    color: var(--red);
+  }
+  .pno .dot {
+    margin-top: 0.15em;
+  }
+  h1 {
+    font-size: clamp(2.2rem, 1.5rem + 3vw, 4rem);
+    max-width: 14em;
+  }
+  .main h2 {
+    margin-top: 18px;
+    font-family: var(--f-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .feat {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .feat li {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+  }
+  .feat :global(.tick) {
+    margin-top: 2px;
+  }
+  .body {
+    max-width: 36em;
+  }
+
+  /* index card */
+  .icard {
+    position: relative;
+    display: grid;
+    gap: 18px;
+    padding: 64px 26px 28px;
+    background-color: #fffdf9;
+    background-image: linear-gradient(to bottom, transparent 44px, var(--red-soft) 44px, var(--red-soft) 46px, transparent 46px);
+    border-radius: 4px;
+    box-shadow:
+      0 1px 1px rgba(31, 42, 68, 0.08),
+      0 20px 36px -24px rgba(31, 42, 68, 0.5);
+    transform: rotate(0.6deg);
+  }
+  @media (min-width: 1000px) {
+    .icard {
+      position: sticky;
+      top: 28px;
+    }
+  }
+  .icard-head {
+    position: absolute;
+    top: 9px;
+    left: 26px;
+    font-size: 1.2rem;
+  }
+  dl {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+  }
+  dl div {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 10px;
+    align-items: baseline;
+  }
+  dt {
+    font-family: var(--f-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  dd {
+    margin: 0;
+    font-weight: 500;
+  }
+  .comes {
+    font-size: 0.95rem;
+    color: var(--ink-2);
+  }
+  .ask {
+    display: grid;
+    gap: 10px;
+  }
+  .related {
+    margin-top: clamp(64px, 8vw, 104px);
+  }
+  .related h2 {
+    margin-bottom: 20px;
+    font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.1rem);
+  }
+</style>

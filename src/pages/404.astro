@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Page not found">
+  <section class="sec lost" aria-labelledby="lost-title">
+    <div class="wrap">
+      <p class="eyebrow">Error 404</p>
+      <h1 id="lost-title"><span class="dot" aria-hidden="true"></span>This page isn't in the register.</h1>
+      <p class="lede">The link is old, or there's a typo in it. Like a missing semicolon, it happens to everyone.</p>
+      <div class="cta-row">
+        <a class="btn" href="/">Back to the home page</a>
+        <a class="btn btn-line" href="/projects/">See all projects</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .lost .wrap {
+    display: grid;
+    gap: 22px;
+    justify-items: start;
+    min-height: 50vh;
+    align-content: center;
+  }
+  h1 {
+    font-size: clamp(2.1rem, 1.4rem + 3vw, 3.8rem);
+  }
+</style>

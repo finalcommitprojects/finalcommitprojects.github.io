@@ -1,0 +1,152 @@
+---
+import { site, wa, mailto } from '../data/site';
+import Icon from './Icon.astro';
+import Wordmark from './Wordmark.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="foot" id="contact">
+  <section class="sec contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-copy">
+          <h2 id="contact-title"><span class="dot filled" aria-hidden="true"></span>Got a deadline?<br />Message us today.</h2>
+          <p class="lede">
+            Tell us your course, your deadline and what you have in mind. {site.replyTime} We're around {site.hours.toLowerCase()}.
+          </p>
+          <p class="note last-commit" aria-hidden="true">last commit: viva done ✓</p>
+        </div>
+
+        <ul class="ways">
+          <li>
+            <span class="way-label mono">WhatsApp</span>
+            <span class="way-value">{site.phone}</span>
+            <a class="btn btn-wa btn-small" href={wa()}><Icon name="wa" />Message</a>
+          </li>
+          <li>
+            <span class="way-label mono">Call</span>
+            <span class="way-value">{site.phone}</span>
+            <a class="btn btn-line btn-small" href={site.phoneHref}><Icon name="phone" />Call</a>
+          </li>
+          <li>
+            <span class="way-label mono">Email</span>
+            <span class="way-value email">{site.email}</span>
+            <a class="btn btn-line btn-small" href={mailto('Project enquiry')}><Icon name="mail" />Write</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap base">
+    <a href="/" class="home" aria-label="Final Commit, home"><Wordmark /></a>
+    <p>Software projects for students, anywhere in India.</p>
+    <ul class="base-links">
+      <li><a href="/projects/">All projects</a></li>
+      <li><a href="/#idea">Your idea</a></li>
+      <li><a href="/#faq">FAQ</a></li>
+      {site.instagram && <li><a href={site.instagram} rel="me">Instagram</a></li>}
+      {site.youtube && <li><a href={site.youtube} rel="me">YouTube</a></li>}
+    </ul>
+    <p class="copy mono">© {year} {site.name}</p>
+  </div>
+</footer>
+
+<style>
+  .contact {
+    border-top: 1px solid var(--rule);
+  }
+  .sec + .foot .contact,
+  .foot .contact {
+    padding-top: var(--sec-y);
+  }
+  .contact-grid {
+    display: grid;
+    gap: 40px;
+  }
+  @media (min-width: 960px) {
+    .contact-grid {
+      grid-template-columns: 1.1fr 1fr;
+      align-items: end;
+      gap: 64px;
+    }
+  }
+  .contact-copy {
+    display: grid;
+    gap: 18px;
+  }
+  .last-commit {
+    transform: rotate(-2deg);
+    transform-origin: left;
+  }
+  .ways {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 2px solid var(--ink);
+  }
+  .ways li {
+    display: grid;
+    grid-template-columns: 92px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding-block: 14px;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .way-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-2);
+  }
+  .way-value {
+    font-weight: 500;
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 520px) {
+    .ways li {
+      grid-template-columns: 1fr auto;
+      gap: 2px 12px;
+    }
+    .way-label {
+      grid-column: 1;
+    }
+    .way-value {
+      grid-column: 1;
+      grid-row: 2;
+    }
+    .ways .btn {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
+    .email {
+      font-size: 0.9rem;
+    }
+  }
+  .base {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 24px;
+    padding-block: 28px 36px;
+    color: var(--ink-2);
+    font-size: 0.92rem;
+  }
+  .base .home {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .base-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .copy {
+    margin-left: auto;
+    font-size: 0.8rem;
+  }
+</style>
