@@ -106,6 +106,12 @@ for (const id of POSTERS.filter((p) => p.includes(only))) {
   }
 }
 
+if (!only || 'profile'.includes(only)) {
+  await load(`file://${HERE}/profile.html`, 640, 640);
+  await shot(join(OUT, '00-whatsapp-profile-picture.png'), 640, 640);
+  console.log('  00-whatsapp-profile-picture.png');
+}
+
 if (!only || 'flyer'.includes(only)) {
   const check = await load(`file://${HERE}/flyer.html`, 794, 1123, 2);
   await shot(join(OUT, '10-flyer-A4-preview.png'), 794, 1123);
