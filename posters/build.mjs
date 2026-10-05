@@ -106,6 +106,20 @@ for (const id of POSTERS.filter((p) => p.includes(only))) {
   }
 }
 
+if (!only || 'logo'.includes(only)) {
+  const LOGO_OUT = join(homedir(), 'Downloads', 'FinalCommit-logo');
+  mkdirSync(LOGO_OUT, { recursive: true });
+  // "branch" (the git-graph F) is the chosen logo; the others are kept as alternatives
+  mkdirSync(join(LOGO_OUT, 'other-options'), { recursive: true });
+  const files = { branch: 'final-commit-logo-1024.png', mark: 'other-options/logo-1-mark.png', stamp: 'other-options/logo-3-stamp.png', wordmark: 'other-options/logo-4-wordmark.png' };
+  for (const [v, file] of Object.entries(files)) {
+    const check = await load(`file://${HERE}/logo.html?v=${v}`, 1024, 1024);
+    if (check.broken.length) problems.push(`logo ${v}: fonts failed -> ${check.broken.join(', ')}`);
+    await shot(join(LOGO_OUT, file), 1024, 1024);
+    console.log(`  ${file}`);
+  }
+}
+
 if (!only || 'profile'.includes(only)) {
   await load(`file://${HERE}/profile.html`, 640, 640);
   await shot(join(OUT, '00-whatsapp-profile-picture.png'), 640, 640);
