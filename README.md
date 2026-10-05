@@ -37,6 +37,21 @@ node scripts/shot.mjs "file://$PWD/scripts/og.html" 1200 public/og.png 0 630
 node scripts/shot.mjs "file://$PWD/scripts/icon.html" 180 public/apple-touch-icon.png 0 180
 ```
 
+## Posters
+
+`posters/` holds the WhatsApp and print poster pack. Astro does not deploy it.
+
+- `poster.html` defines 9 posters (6 English and 3 Kannada). Each renders at Status size (1080×1920) and group/Instagram size (1080×1350).
+- `flyer.html` is the A4 notice-board flyer, with a WhatsApp QR code and tear-off strips.
+- `captions.md` holds the caption for each poster, the posting plan and the WhatsApp Business texts. Each caption's wa.me link pre-fills a different message, so you can tell which poster brought a student in.
+
+```sh
+node posters/build.mjs            # renders everything to ~/Downloads/FinalCommit-posters/
+node posters/build.mjs viva       # only the posters whose id contains "viva"
+```
+
+The build fails if anything spills past the safe zone, a font fails to load, the QR code doesn't decode to the chat link, or a caption link points at the wrong number.
+
 ## Deploy
 
 Pushing to `main` deploys to GitHub Pages through `.github/workflows/deploy.yml`. If the site moves to another URL (a different org name or a custom domain), update `site` in `astro.config.mjs`, `url` in `src/data/site.ts` and the sitemap line in `public/robots.txt`.
