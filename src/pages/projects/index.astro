@@ -21,7 +21,8 @@ const n = projects.length;
         </p>
       </div>
 
-      <div class="controls" id="controls" hidden>
+      <noscript><style>.controls { display: none !important; }</style></noscript>
+      <div class="controls" id="controls">
         <label class="sr-only" for="q">Search projects</label>
         <input id="q" type="search" placeholder="Search: face, Flutter, chatbot, attendance…" autocomplete="off" />
         <div class="chips" role="group" aria-label="Filter by area">
@@ -105,7 +106,6 @@ const n = projects.length;
   );
   q.addEventListener('input', apply);
 
-  controls.hidden = false;
   apply();
 </script>
 
@@ -121,9 +121,6 @@ const n = projects.length;
     display: grid;
     gap: 14px;
     margin-bottom: 28px;
-  }
-  .controls[hidden] {
-    display: none;
   }
   input[type='search'] {
     width: min(100%, 520px);
