@@ -1,7 +1,7 @@
 // Every contact detail on the site comes from here. Change it once, it changes everywhere.
 export const site = {
   name: 'Final Commit',
-  url: 'https://finalcommit.github.io',
+  url: 'https://finalcommitprojects.github.io',
   tagline: 'Final-year projects, built with you and explained till your viva.',
   description:
     'Software projects for BE, B.Tech, MCA, BCA, B.Sc and M.Tech students across India. Pick from 75+ projects or bring your own idea. Code, report, PPT, diagrams and viva prep included.',
