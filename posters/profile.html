@@ -1,25 +1,26 @@
 <!doctype html>
-<!-- WhatsApp Business profile picture, 640x640. WhatsApp crops it to a circle, so everything sits in the middle. -->
+<!-- WhatsApp / Instagram profile picture, 640x640: the branch "F" logo (logo.html?v=branch).
+     WhatsApp crops it to a circle, so everything sits in the middle. -->
 <html>
 <head>
 <meta charset="utf-8">
 <style>
-  @font-face { font-family: 'Fraunces'; src: url(../node_modules/@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2) format('woff2'); font-weight: 100 900; }
   html, body { margin: 0; }
-  .pic {
-    position: relative; width: 640px; height: 640px; overflow: hidden;
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px;
-    background: #f6f1e7 linear-gradient(to bottom, transparent 63px, rgba(74,110,170,.16) 63px, rgba(74,110,170,.16) 65px, transparent 65px) 0 0 / 100% 64px;
-    color: #1f2a44;
-  }
-  .glyph { width: 150px; height: 250px; }
-  .name { font-family: 'Fraunces'; font-weight: 650; font-size: 76px; letter-spacing: -.02em; line-height: 1; }
+  .pic { width: 640px; height: 640px; background: #f6f1e7 linear-gradient(to bottom, transparent 63px, rgba(74,110,170,.15) 63px, rgba(74,110,170,.15) 65px, transparent 65px) 0 0 / 100% 64px; }
+  svg { display: block; }
 </style>
 </head>
 <body>
 <div class="pic" id="poster">
-  <svg class="glyph" viewBox="0 0 18 30"><path d="M9 0v9.5M9 20.5V30" stroke="#c4362c" stroke-width="2"/><circle cx="9" cy="15" r="5.2" fill="none" stroke="#1f2a44" stroke-width="2.6"/></svg>
-  <div class="name">Final Commit</div>
+  <svg width="640" height="640" viewBox="0 0 100 100">
+    <g fill="none" stroke="#1f2a44" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M37 76 V31 Q37 24 44 24 H60"/>
+      <path d="M37 54 Q37 48 43 48 H53"/>
+    </g>
+    <circle cx="66" cy="24" r="6.2" fill="#f6f1e7" stroke="#1f2a44" stroke-width="4.2"/>
+    <circle cx="59" cy="48" r="6.2" fill="#f6f1e7" stroke="#1f2a44" stroke-width="4.2"/>
+    <circle cx="37" cy="79" r="7.4" fill="#c4362c"/>
+  </svg>
 </div>
 </body>
 </html>
