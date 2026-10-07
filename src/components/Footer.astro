@@ -22,17 +22,17 @@ const year = new Date().getFullYear();
           <li>
             <span class="way-label mono">WhatsApp</span>
             <span class="way-value">{site.phone}</span>
-            <a class="btn btn-wa btn-small" href={wa()}><Icon name="wa" />Message</a>
+            <a class="btn btn-wa btn-small" data-umami-event="whatsapp" data-umami-event-location="footer" href={wa()}><Icon name="wa" />Message</a>
           </li>
           <li>
             <span class="way-label mono">Call</span>
             <span class="way-value">{site.phone}</span>
-            <a class="btn btn-line btn-small" href={site.phoneHref}><Icon name="phone" />Call</a>
+            <a class="btn btn-line btn-small" data-umami-event="call" data-umami-event-location="footer" href={site.phoneHref}><Icon name="phone" />Call</a>
           </li>
           <li>
             <span class="way-label mono">Email</span>
             <span class="way-value email">{site.email}</span>
-            <a class="btn btn-line btn-small" href={mailto('Project enquiry')}><Icon name="mail" />Write</a>
+            <a class="btn btn-line btn-small" data-umami-event="email" data-umami-event-location="footer" href={mailto('Project enquiry')}><Icon name="mail" />Write</a>
           </li>
         </ul>
       </div>

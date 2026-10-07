@@ -4,8 +4,8 @@ import Icon from './Icon.astro';
 ---
 
 <div class="mbar">
-  <a class="btn btn-wa" href={wa()}><Icon name="wa" />WhatsApp us</a>
-  <a class="btn btn-line" href={site.phoneHref}><Icon name="phone" />Call</a>
+  <a class="btn btn-wa" data-umami-event="whatsapp" data-umami-event-location="mobile-bar" href={wa()}><Icon name="wa" />WhatsApp us</a>
+  <a class="btn btn-line" data-umami-event="call" data-umami-event-location="mobile-bar" href={site.phoneHref}><Icon name="phone" />Call</a>
 </div>
 
 <style>

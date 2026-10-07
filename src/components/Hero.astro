@@ -18,14 +18,14 @@ const n = projects.length;
         report, PPT and viva prep come with it.
       </p>
       <div class="cta-row">
-        <a class="btn btn-wa" href={wa()}><Icon name="wa" />WhatsApp us</a>
-        <a class="btn btn-line" href="/projects/">See all {n} projects <Icon name="arrow" /></a>
+        <a class="btn btn-wa" data-umami-event="whatsapp" data-umami-event-location="hero" href={wa()}><Icon name="wa" />WhatsApp us</a>
+        <a class="btn btn-line" data-umami-event="browse-projects" data-umami-event-location="hero" href="/projects/">See all {n} projects <Icon name="arrow" /></a>
         <p class="note price-note">
           <svg viewBox="0 0 64 34" aria-hidden="true"><path d="M61 8 C 44 1, 24 6, 9 23 M9 23 L 20 22.5 M9 23 L 11.5 12"></path></svg>
           price? depends on the project.<br />asking is free.
         </p>
       </div>
-      <p class="meta">Or call <a href={site.phoneHref}>{site.phone}</a> · {site.hours}</p>
+      <p class="meta">Or call <a data-umami-event="call" data-umami-event-location="hero" href={site.phoneHref}>{site.phone}</a> · {site.hours}</p>
     </div>
 
     <div class="side">

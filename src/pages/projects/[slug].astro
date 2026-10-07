@@ -69,8 +69,8 @@ const ask = wa(`Hi ${site.name}, I'm interested in project No. ${no(p.id)}: ${p.
             code walkthrough and viva questions.
           </p>
           <div class="ask">
-            <a class="btn btn-wa" href={ask}><Icon name="wa" />Ask about No. {no(p.id)}</a>
-            <a class="btn btn-line" href={site.phoneHref}><Icon name="phone" />Call {site.phone}</a>
+            <a class="btn btn-wa" data-umami-event="whatsapp" data-umami-event-location="project-page" data-umami-event-project={no(p.id)} href={ask}><Icon name="wa" />Ask about No. {no(p.id)}</a>
+            <a class="btn btn-line" data-umami-event="call" data-umami-event-location="project-page" data-umami-event-project={no(p.id)} href={site.phoneHref}><Icon name="phone" />Call {site.phone}</a>
           </div>
           <p class="note">price depends on scope.<br />asking is free.</p>
         </aside>

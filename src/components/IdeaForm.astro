@@ -92,11 +92,16 @@ import Icon from './Icon.astro';
       return true;
     };
 
+    // Umami is loaded on the live site only; elsewhere this does nothing
+    const track = (event: string, data: Record<string, string>) =>
+      (window as { umami?: { track: (e: string, d: object) => void } }).umami?.track(event, data);
+
     idea.addEventListener('input', () => (error.hidden = true));
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       if (needsIdea()) return;
+      track('idea-form', { channel: 'whatsapp' });
       const url = `https://wa.me/${form.dataset.wa}?text=${encodeURIComponent(message())}`;
       if (!window.open(url, '_blank', 'noopener')) window.location.href = url;
     });
@@ -106,6 +111,7 @@ import Icon from './Icon.astro';
         e.preventDefault();
         return;
       }
+      track('idea-form', { channel: 'email' });
       emailLink.href = `mailto:${form.dataset.email}?subject=${encodeURIComponent('Project idea')}&body=${encodeURIComponent(message())}`;
     });
   }
