@@ -46,12 +46,7 @@ Pushing to `main` deploys to GitHub Pages through `.github/workflows/deploy.yml`
 
 ## Design
 
-Notes on the look, for whoever edits it next:
-
-- The site is styled as a lab record book: paper `#f6f1e7`, blue-black ink `#1f2a44`, a red margin line, ballpoint-blue fill-ins `#2a3f9d` and red-pen marks `#c4362c`. Tokens are in `src/styles/global.css`.
-- Fonts: Fraunces for headings, IBM Plex Sans for body text, IBM Plex Mono for numbers and tags, and Kalam for handwritten notes. All are self-hosted through `@fontsource`.
-- Each section heading carries a commit dot on the margin line. The last one is filled in.
-- Avoid gradients, emoji, invented stats and invented testimonials. Add testimonials only once real students have given them.
-- Every claim on the site must be something a student can check: payment stages, the private repo, written terms. Prefer a mechanism over an adjective.
-
-Posters, the flyer, the logo files and the WhatsApp texts live in the private repo `finalcommitprojects/marketing`.
+- Palette: paper `#f6f1e7`, ink `#1f2a44`, red `#c4362c`, ballpoint blue `#2a3f9d`. Tokens are in `src/styles/global.css`.
+- Fonts: Fraunces (headings), IBM Plex Sans (body), IBM Plex Mono (numbers and tags), Kalam (the few handwritten notes). Self-hosted via `@fontsource`.
+- Each section heading has a dot on the red margin line.
+- Promises on the site (payment stages, repo access, exclusivity, hosting) must match `src/pages/terms.astro` and `src/pages/refunds.astro`.

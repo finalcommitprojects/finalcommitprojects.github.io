@@ -40,7 +40,15 @@ const year = new Date().getFullYear();
 
   <div class="wrap base">
     <a href="/" class="home" aria-label="Final Commit, home"><Wordmark /></a>
-    <p>Software projects for students, anywhere in India.</p>
+    <p>
+      Software projects for students, anywhere in India. Run by {site.owner.name}{
+        site.owner.linkedin && (
+          <>
+            {' '}(<a href={site.owner.linkedin} rel="me noopener" data-umami-event="linkedin" data-umami-event-location="footer">LinkedIn</a>)
+          </>
+        )
+      }.
+    </p>
     <ul class="base-links">
       <li><a href="/projects/">All projects</a></li>
       <li><a href="/#idea">Your idea</a></li>

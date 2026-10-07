@@ -5,6 +5,7 @@ import Icon from '../../components/Icon.astro';
 import Tick from '../../components/marks/Tick.astro';
 import { areaLabel, areas, no, projects, type Project } from '../../data/projects';
 import { site, wa } from '../../data/site';
+import { fmt, priceFor } from '../../data/pricing';
 
 export function getStaticPaths() {
   return projects.map((p) => ({ params: { slug: p.slug }, props: { p } }));
@@ -16,6 +17,7 @@ interface Props {
 const { p } = Astro.props;
 const related = projects.filter((x) => x.area === p.area && x.id !== p.id).slice(0, 4);
 const scope = areas.find((a) => a.key === p.area)!.scope;
+const showIt = p.area === 'mobile' ? 'an installable APK' : 'a live link where the project can run on a free host';
 const ask = wa(`Hi ${site.name}, I'm interested in project No. ${no(p.id)}: ${p.title}. Can you tell me more?`);
 ---
 
@@ -54,10 +56,6 @@ const ask = wa(`Hi ${site.name}, I'm interested in project No. ${no(p.id)}: ${p.
           <h2>What to expect</h2>
           <p class="body">{scope}</p>
           {p.limits && <p class="body">{p.limits}</p>}
-          <p class="body">
-            Built from scratch for you in your own private GitHub repo. The stack, the modules and the size can all change to fit what
-            your guide wants.
-          </p>
         </div>
 
         <aside class="icard" aria-label="Project details">
@@ -66,10 +64,12 @@ const ask = wa(`Hi ${site.name}, I'm interested in project No. ${no(p.id)}: ${p.
             <div><dt>Level</dt><dd>{p.level}</dd></div>
             <div><dt>Area</dt><dd>{areaLabel(p.area)}</dd></div>
             <div><dt>Suits</dt><dd>{p.suits.join(', ')}</dd></div>
+            <div><dt>Usually</dt><dd>{fmt(priceFor(p))}</dd></div>
+            <div><dt>Built</dt><dd>From scratch, in a private repo. Stack and size can change.</dd></div>
           </dl>
           <p class="comes">
-            Comes with the source code, database, report in your college's format, PPT, diagrams, demo video, a live link until your
-            viva, setup on your laptop, a code walkthrough and viva questions.
+            Comes with the source code, database, report in your college's format, PPT, diagrams, demo video, {showIt}, setup on your
+            laptop, a code walkthrough and viva questions.
           </p>
           <div class="ask">
             <a class="btn btn-wa" data-umami-event="whatsapp" data-umami-event-location="project-page" data-umami-event-project={no(p.id)} href={ask}><Icon name="wa" />Ask about No. {no(p.id)}</a>

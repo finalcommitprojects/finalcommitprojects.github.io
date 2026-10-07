@@ -9,14 +9,15 @@ import { site } from '../data/site';
   updated="7 October 2026"
 >
   <p>
-    These terms cover every project we build with a student. They're written in plain English on purpose. If anything here is unclear,
+    These terms cover every project we build with a student. If anything here is unclear,
     ask us on WhatsApp at {site.phone} before you pay anything.
   </p>
 
   <h2>Who we are</h2>
   <p>
-    Final Commit is run by two software developers in India. We build software projects with final-year and mini-project students, and
-    prepare them to explain and defend the work. Contact: WhatsApp or call {site.phone}, or email {site.email}.
+    Final Commit is run by {site.owner.name}{site.owner.experience && `, a software developer with ${site.owner.experience},`} together
+    with a fellow developer, in India. We build software projects with final-year and mini-project students, and prepare them to
+    explain and defend the work. Contact: WhatsApp or call {site.phone}, or email {site.email}.
   </p>
 
   <h2>Your part, and academic integrity</h2>
@@ -53,8 +54,8 @@ import { site } from '../data/site';
 
   <h2>Building and seeing the work</h2>
   <p>
-    Your project is built in a private GitHub repository that you can see from the first day. You get a working demo before each review
-    your college holds.
+    Your project is built in a private GitHub repository. You get read access when you make the first payment, so you can follow every
+    commit from then on. You get a working demo before each review your college holds.
   </p>
 
   <h2>Changes</h2>
@@ -64,7 +65,10 @@ import { site } from '../data/site';
   </p>
 
   <h2>Exclusivity</h2>
-  <p>We never build the same project for two students from the same college and batch.</p>
+  <p>
+    Every project is built from scratch. Students at different colleges may pick the same idea from our list, but we never take on the
+    same idea for two students from the same college and batch. We ask for your college on the call so we can check.
+  </p>
 
   <h2>Plagiarism</h2>
   <p>
@@ -80,14 +84,15 @@ import { site } from '../data/site';
 
   <h2>Hosting</h2>
   <p>
-    We host your project free, with a live link, until your viva. If you want your own domain or an always-on server, you pay the
-    provider directly at their price; we don't add anything on top.
+    Web and AI projects get a live link, hosted free until your viva. Android apps come as an installable APK, and desktop apps as an
+    installer. If you want your own domain or an always-on server, you pay the provider directly at their price; we don't add anything
+    on top.
   </p>
 
   <h2>Support</h2>
   <p>
     Until your viva: help getting the demo running before reviews, reinstallation if your laptop changes, answers about your code on
-    WhatsApp, and a mock viva. We reply on WhatsApp between {site.hours.toLowerCase()}.
+    WhatsApp, and a mock viva. We reply on WhatsApp from {site.hours.toLowerCase()}.
   </p>
 
   <h2>If we can't deliver</h2>
@@ -97,5 +102,5 @@ import { site } from '../data/site';
   </p>
 
   <h2>Law</h2>
-  <p>These terms are governed by the laws of India. If something goes wrong, talk to us first; we'd rather fix it.</p>
+  <p>These terms are governed by the laws of India. If something goes wrong, talk to us first and we'll work it out with you.</p>
 </Legal>

@@ -11,6 +11,13 @@ export const site = {
   email: 'finalcommitprojects@gmail.com',
   hours: '10 am to 9 pm, every day',
   replyTime: 'We usually reply within a few hours.',
+  // Who students talk to. Shown as one quiet line (footer, terms), not as a feature.
+  // Empty linkedin/experience are simply left out.
+  owner: {
+    name: 'Thanush',
+    linkedin: 'https://www.linkedin.com/in/thanush-t-46a21825a/',
+    experience: '', // left out at the owner's request
+  },
   // Umami Cloud website ID (cloud.umami.is). Empty = no analytics script on the page.
   umamiId: 'f6b0f6cf-bb7f-4bd1-917e-acc1d8116251',
   // Add these once the pages exist; empty values are hidden.
