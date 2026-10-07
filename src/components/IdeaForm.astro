@@ -8,12 +8,15 @@ import Icon from './Icon.astro';
     <div class="sec-head">
       <h2 id="idea-title"><span class="dot" aria-hidden="true"></span>Have your own idea?</h2>
       <p>
-        Half an idea is fine, and so is a base paper from your guide with no other instructions. Already building something? Say so
-        below. Fill in what you can; WhatsApp opens with the message written, and you decide whether to send it.
+        Half an idea is fine, and so is a base paper from your guide. Already building something? Say so. WhatsApp opens with your
+        message ready, and you decide whether to send it.
       </p>
-      <p class="privacy">Nothing you type here is saved on this website. Your college is optional; it only helps us follow your report format.</p>
+
     </div>
 
+    <details class="panel quiet idea-panel" data-open-desktop>
+      <summary data-umami-event="open-panel" data-umami-event-panel="idea-form">Tell us your idea</summary>
+      <div class="panel-body">
     <form class="sheet form" id="idea-form" data-wa={site.whatsapp} data-email={site.email} novalidate>
       <p>
         Hi, I'm studying{' '}
@@ -70,6 +73,9 @@ import Icon from './Icon.astro';
         <a class="btn btn-line" id="idea-email" href={mailto('Project idea')}><Icon name="mail" />Email it instead</a>
       </div>
     </form>
+        <p class="privacy">Nothing you type here is saved on this website. Your college is optional; it only helps us follow your report format.</p>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -133,6 +139,9 @@ import Icon from './Icon.astro';
     display: grid;
     gap: 8px;
   }
+  .grid > * {
+    min-width: 0;
+  }
   @media (min-width: 1000px) {
     .grid {
       grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
@@ -141,7 +150,9 @@ import Icon from './Icon.astro';
     }
   }
   .privacy {
-    font-size: 0.92rem;
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: var(--ink-2);
   }
   .form {
     padding: 32px clamp(18px, 4vw, 40px);
@@ -229,7 +240,8 @@ import Icon from './Icon.astro';
     line-height: 1.1;
   }
   @media (max-width: 520px) {
-    input {
+    input,
+    select {
       width: 100%;
     }
     .actions .btn {

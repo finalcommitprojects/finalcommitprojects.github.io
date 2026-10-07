@@ -3,11 +3,12 @@ import Tick from './marks/Tick.astro';
 import { MINI, fmt, ranges } from '../data/pricing';
 
 // Stages and promises here are public commitments. Change them only if the terms page changes too.
-const stages: [string, string, string][] = [
-  ['Free call and synopsis', 'We agree the scope and send you a written quote. Then we write the synopsis and abstract for your guide.', '₹0'],
-  ['Your guide approves the synopsis', 'Now you pay the first part. If your guide rejects the topic, we rework it, or you walk away owing nothing.', '30%'],
-  ['Working demo on a video call', 'You watch your project run, built in your own private GitHub repo.', '40%'],
-  ['Setup, walkthrough and mock viva', 'We install it on your laptop over a Google Meet screen share. You stay in control of your laptop the whole time.', '30%'],
+// [stage, what happens, you pay, short label for the stepper]
+const stages: [string, string, string, string][] = [
+  ['Free call and synopsis', 'We agree the scope and send you a written quote. Then we write the synopsis and abstract for your guide.', '₹0', 'Call and synopsis'],
+  ['Your guide approves the synopsis', 'Now you pay the first part. If your guide rejects the topic, we rework it, or you walk away owing nothing.', '30%', 'Guide approves'],
+  ['Working demo on a video call', 'You watch your project run, built in your own private GitHub repo.', '40%', 'Working demo'],
+  ['Setup, walkthrough and mock viva', 'We install it on your laptop over a Google Meet screen share. You stay in control of your laptop the whole time.', '30%', 'Setup and viva prep'],
 ];
 
 const promises = [
@@ -25,72 +26,89 @@ const promises = [
   <div class="wrap">
     <div class="sec-head">
       <h2 id="paying-title"><span class="dot" aria-hidden="true"></span>How paying works</h2>
-      <p>
-        You pay in three parts, and only after you've seen something real. Nothing is paid before your guide approves the synopsis.
-      </p>
+      <p>You pay each part only after you see that stage done. Nothing before your guide approves the synopsis.</p>
     </div>
 
-    <div class="ledger" role="table" aria-label="Payment stages">
-      <div class="row head" role="row">
-        <span role="columnheader">Stage</span><span role="columnheader">What happens</span><span role="columnheader">You pay</span>
-      </div>
+    <ol class="stepper" aria-label="Payment stages">
       {
-        stages.map(([stage, what, pay], i) => (
-          <div class="row" role="row">
-            <span class="stage" role="cell">
-              <span class="n mono">{String(i + 1).padStart(2, '0')}</span>
-              {stage}
-            </span>
-            <span class="what" role="cell">{what}</span>
-            <span class:list={['pay', 'mono', { zero: pay === '₹0' }]} role="cell">{pay}</span>
-          </div>
+        stages.map(([, , pay, short]) => (
+          <li>
+            <span class:list={['amt', 'mono', { zero: pay === '₹0' }]}>{pay}</span>
+            <span class="lbl">{short}</span>
+          </li>
         ))
       }
-    </div>
+    </ol>
 
-    <div class="prices">
-      <h3>What projects usually cost</h3>
-      <div class="ledger" role="table" aria-label="Price ranges">
-        <div class="row head two" role="row"><span role="columnheader">Area</span><span role="columnheader">Usual range</span></div>
-        <div class="row two" role="row"><span role="cell">Mini project, any area (2nd or 3rd year)</span><span class="pay mono" role="cell">{fmt(MINI)}</span></div>
-        {
-          ranges.map((r) => (
-            <div class="row two" role="row">
-              <span role="cell">{r.label}</span>
-              <span class="pay mono" role="cell">{fmt(r.range)}</span>
-            </div>
-          ))
-        }
+    <details class="panel" data-open-desktop>
+      <summary data-umami-event="open-panel" data-umami-event-panel="stages">What happens at each stage</summary>
+      <div class="panel-body">
+        <div class="ledger" role="table" aria-label="Payment stages in detail">
+          <div class="row head" role="row">
+            <span role="columnheader">Stage</span><span role="columnheader">What happens</span><span role="columnheader">You pay</span>
+          </div>
+          {
+            stages.map(([stage, what, pay], i) => (
+              <div class="row" role="row">
+                <span class="stage" role="cell">
+                  <span class="n mono">{String(i + 1).padStart(2, '0')}</span>
+                  {stage}
+                </span>
+                <span class="what" role="cell">{what}</span>
+                <span class:list={['pay', 'mono', { zero: pay === '₹0' }]} role="cell">{pay}</span>
+              </div>
+            ))
+          }
+        </div>
       </div>
-      <p class="fine">
-        This includes the code, report, PPT, diagrams, demo video, setup, walkthrough and viva prep. Where you land in the range depends on
-        the number of modules and the report length. Your exact price is in the written quote, before you pay anything.
-      </p>
-      <p class="fine">
-        <strong>Hosting:</strong> web and AI projects get a live link, hosted free on services like Vercel, Render or Hugging Face until
-        your viva. Free servers sleep when idle, so the first load can take up to a minute; we wake it before your review. If you want
-        your own domain (about ₹500 to ₹900 a year) or an always-on server (about ₹400 to ₹1,000 a month), you pay the provider directly,
-        with nothing added by us.
-      </p>
-    </div>
+    </details>
 
-    <div class="promises">
-      <h3>In writing, for every project</h3>
-      <ul>
-        {
-          promises.map((p) => (
-            <li>
-              <Tick />
-              <span>{p}</span>
-            </li>
-          ))
-        }
-      </ul>
-      <p class="fine">
-        The full terms are on the <a href="/terms/" data-umami-event="read-terms">terms page</a> and the{' '}
-        <a href="/refunds/" data-umami-event="read-refunds">refund policy</a>.
-      </p>
-    </div>
+    <details class="panel" data-open-desktop>
+      <summary data-umami-event="open-panel" data-umami-event-panel="prices">Prices by area</summary>
+      <div class="panel-body prices">
+        <div class="ledger" role="table" aria-label="Price ranges">
+          <div class="row head two" role="row"><span role="columnheader">Area</span><span role="columnheader">Usual range</span></div>
+          <div class="row two" role="row"><span role="cell">Mini project, any area (2nd or 3rd year)</span><span class="pay mono" role="cell">{fmt(MINI)}</span></div>
+          {
+            ranges.map((r) => (
+              <div class="row two" role="row">
+                <span role="cell">{r.label}</span>
+                <span class="pay mono" role="cell">{fmt(r.range)}</span>
+              </div>
+            ))
+          }
+        </div>
+        <p class="fine">
+          Includes the code, report, PPT, diagrams, demo video, setup, walkthrough and viva prep. Where you land depends on the number of
+          modules and the report length. Your exact price is in the written quote, before you pay anything.
+        </p>
+        <p class="fine">
+          <strong>Hosting:</strong> web and AI projects get a live link, hosted free until your viva. Free servers sleep when idle, so the
+          first load can take up to a minute; we wake it before your review. Your own domain (about ₹500 to ₹900 a year) or an always-on
+          server (about ₹400 to ₹1,000 a month) is optional, paid to the provider directly, with nothing added by us.
+        </p>
+      </div>
+    </details>
+
+    <details class="panel" data-open-desktop>
+      <summary data-umami-event="open-panel" data-umami-event-panel="promises">What's in writing</summary>
+      <div class="panel-body promises">
+        <ul>
+          {
+            promises.map((p) => (
+              <li>
+                <Tick />
+                <span>{p}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="fine">
+          The full terms are on the <a href="/terms/" data-umami-event="read-terms">terms page</a> and the{' '}
+          <a href="/refunds/" data-umami-event="read-refunds">refund policy</a>.
+        </p>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -164,8 +182,58 @@ const promises = [
   }
   .prices,
   .promises {
-    margin-top: clamp(32px, 4vw, 48px);
     max-width: 52em;
+  }
+  .stepper {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0 0 22px;
+    padding: 0;
+    list-style: none;
+    counter-reset: none;
+  }
+  .stepper li {
+    position: relative;
+    display: grid;
+    gap: 4px;
+    padding: 14px 12px;
+    background: var(--paper-2);
+    border-top: 3px solid var(--ink);
+    border-radius: 2px;
+  }
+  .stepper li + li::before {
+    content: '';
+    position: absolute;
+    left: -9px;
+    top: 50%;
+    width: 8px;
+    height: 2px;
+    background: var(--ink-3);
+  }
+  .amt {
+    font-size: clamp(1.25rem, 1rem + 1vw, 1.7rem);
+    font-weight: 500;
+    line-height: 1;
+  }
+  .amt.zero {
+    color: var(--wa);
+  }
+  .lbl {
+    font-size: 0.88rem;
+    line-height: 1.3;
+    color: var(--ink-2);
+  }
+  @media (max-width: 759px) {
+    .stepper {
+      gap: 6px;
+    }
+    .stepper li {
+      padding: 10px 8px;
+    }
+    .lbl {
+      font-size: 0.78rem;
+    }
   }
   .row.two {
     grid-template-columns: minmax(0, 1fr) auto;
@@ -189,19 +257,19 @@ const promises = [
     font-size: 1rem;
     white-space: nowrap;
   }
-  ul {
+  .promises ul {
     display: grid;
     gap: 12px;
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  li {
+  .promises li {
     display: grid;
     grid-template-columns: 30px minmax(0, 1fr);
     align-items: start;
   }
-  li :global(.tick) {
+  .promises li :global(.tick) {
     margin-top: 2px;
   }
   .fine {

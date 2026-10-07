@@ -16,7 +16,9 @@ const featured = projects.filter((p) => p.featured);
       </p>
     </div>
 
-    <Register items={featured} />
+    <div class="limit">
+      <Register items={featured} />
+    </div>
 
     <div class="browse">
       <ul class="chips" aria-label="Browse by area">
@@ -36,6 +38,28 @@ const featured = projects.filter((p) => p.featured);
 </section>
 
 <style>
+  @media (max-width: 759px) {
+    .limit :global(.reg-row:nth-child(n + 5)) {
+      display: none;
+    }
+    .browse :global(.chips) {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      max-width: 100%;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .browse :global(.chips)::-webkit-scrollbar {
+      display: none;
+    }
+    .browse :global(.chip) {
+      flex: none;
+    }
+    .browse {
+      margin-top: 20px;
+      gap: 16px;
+    }
+  }
   .browse {
     display: grid;
     gap: 24px;

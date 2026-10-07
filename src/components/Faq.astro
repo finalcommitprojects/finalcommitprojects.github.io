@@ -27,6 +27,10 @@ const faqs: [string, string][] = [
     "Yes. The walkthrough sessions are for exactly that. We go through each module until you can explain it yourself, and the viva sheet covers the questions panels usually ask. You can also follow the build in your GitHub repo as it happens.",
   ],
   [
+    'What help do I get until my viva?',
+    "Changes your guide asks for until final submission, help getting the demo running before each review, reinstallation if your laptop changes, answers on WhatsApp when you're stuck on your code, and a mock viva before the real one.",
+  ],
+  [
     'How long does it take?',
     "From the first call, a mini project usually takes 1 to 2 weeks and a major project 3 to 6. Tell us your review date first, and we'll say on the call whether it's realistic.",
   ],
@@ -81,7 +85,7 @@ const faqs: [string, string][] = [
 
     <div class="paper">
       {
-        faqs.map(([q, a], i) => (
+        faqs.slice(0, 6).map(([q, a], i) => (
           <details>
             <summary>
               <span class="q-no mono">Q{i + 1}</span>
@@ -92,6 +96,23 @@ const faqs: [string, string][] = [
           </details>
         ))
       }
+      <details class="panel more">
+        <summary data-umami-event="open-panel" data-umami-event-panel="more-faq">More questions ({faqs.length - 6})</summary>
+        <div class="panel-body">
+          {
+            faqs.slice(6).map(([q, a], i) => (
+              <details>
+                <summary>
+                  <span class="q-no mono">Q{i + 7}</span>
+                  <span class="q-text">{q}</span>
+                  <span class="q-mark" aria-hidden="true" />
+                </summary>
+                <p>{a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </details>
     </div>
   </div>
 </section>
@@ -111,10 +132,16 @@ const faqs: [string, string][] = [
   .paper {
     border-top: 2px solid var(--ink);
   }
-  details {
+  details:not(.panel) {
     border-bottom: 1px solid var(--rule-strong);
   }
-  summary {
+  .more {
+    border-top: 0;
+  }
+  .more > :global(summary) {
+    color: var(--ink-2);
+  }
+  details:not(.panel) > summary {
     display: grid;
     grid-template-columns: 46px minmax(0, 1fr) 24px;
     align-items: baseline;
@@ -123,7 +150,7 @@ const faqs: [string, string][] = [
     cursor: pointer;
     list-style: none;
   }
-  summary::-webkit-details-marker {
+  details:not(.panel) > summary::-webkit-details-marker {
     display: none;
   }
   .q-no {
@@ -134,7 +161,7 @@ const faqs: [string, string][] = [
     font-weight: 600;
     font-size: 1.08rem;
   }
-  summary:hover .q-text {
+  details:not(.panel) > summary:hover .q-text {
     text-decoration: underline;
     text-decoration-color: var(--red);
     text-underline-offset: 3px;
@@ -162,7 +189,7 @@ const faqs: [string, string][] = [
   details[open] .q-mark::after {
     transform: rotate(0deg);
   }
-  details p {
+  details:not(.panel) p {
     padding: 0 32px 22px 54px;
     color: var(--ink-2);
     max-width: 44em;
@@ -171,7 +198,7 @@ const faqs: [string, string][] = [
     summary {
       grid-template-columns: 38px minmax(0, 1fr) 18px;
     }
-    details p {
+    details:not(.panel) p {
       padding: 0 0 20px 46px;
     }
   }
