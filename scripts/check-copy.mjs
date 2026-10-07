@@ -13,7 +13,6 @@ const BANNED = [
   [/[—–]/, 'em/en dash'],
   [/price\? depends|depends on scope/i, 'price wording (use the price table)'],
   [/pay in parts/i, '"pay in parts" (link to the payment stages)'],
-  [/research paper/i, 'research papers (not offered)'],
   [/\bthe register\b|>Register</, '"register" (use "project ideas")'],
 ];
 
