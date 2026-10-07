@@ -1,0 +1,124 @@
+---
+import { demos } from '../data/demos';
+import Icon from './Icon.astro';
+---
+
+{
+  demos.length > 0 && (
+    <section class="sec" id="proof" aria-labelledby="proof-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 id="proof-title">
+            <span class="dot" aria-hidden="true" />
+            Real projects we've built
+          </h2>
+          <p>Open them, try them, read the code. Each is a sample of the work you'd get.</p>
+        </div>
+        <ul class="cards">
+          {demos.map((d) => (
+            <li class="card">
+              <a class="thumb" href={d.live} data-umami-event="demo-try" data-umami-event-demo={d.slug} data-umami-event-location="proof">
+                <img src={d.thumb} alt={`Screenshot of the ${d.title} demo`} width="640" height="400" loading="lazy" decoding="async" />
+              </a>
+              <div class="meta">
+                <p class="kind mono">{d.kind}</p>
+                <h3>{d.title}</h3>
+                <p class="blurb">{d.blurb}</p>
+                <div class="links">
+                  <a class="btn btn-small" href={d.live} data-umami-event="demo-try" data-umami-event-demo={d.slug} data-umami-event-location="proof">
+                    Try it live <Icon name="arrow" />
+                  </a>
+                  <a class="btn btn-small btn-line" href={d.code} data-umami-event="demo-code" data-umami-event-demo={d.slug}>
+                    See the code
+                  </a>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .card {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    overflow: hidden;
+    background: var(--paper-2);
+    border-radius: 8px;
+    box-shadow:
+      0 1px 0 rgba(31, 42, 68, 0.06),
+      0 18px 34px -26px rgba(31, 42, 68, 0.55);
+  }
+  .thumb img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+    border-bottom: 1px solid var(--rule);
+  }
+  .meta {
+    display: grid;
+    gap: 6px;
+    align-content: start;
+    padding: 14px 16px 16px;
+  }
+  .kind {
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+  h3 {
+    font-size: 1.1rem;
+  }
+  .blurb {
+    color: var(--ink-2);
+    font-size: 0.95rem;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+  }
+  .links :global(svg) {
+    width: 1em;
+    height: 1em;
+  }
+  /* phones: swipe sideways through the demos */
+  @media (max-width: 759px) {
+    .cards {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 12px;
+      margin-right: calc(-1 * var(--pad-r));
+      padding-right: var(--pad-r);
+      padding-bottom: 6px;
+      scrollbar-width: none;
+    }
+    .cards::-webkit-scrollbar {
+      display: none;
+    }
+    .card {
+      flex: 0 0 82%;
+      scroll-snap-align: start;
+    }
+    .cards:has(.card:only-child) .card {
+      flex-basis: 100%;
+    }
+  }
+</style>

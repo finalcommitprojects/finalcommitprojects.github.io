@@ -6,6 +6,7 @@ import Tick from '../../components/marks/Tick.astro';
 import { areaLabel, areas, no, projects, type Project } from '../../data/projects';
 import { site, wa } from '../../data/site';
 import { fmt, priceFor } from '../../data/pricing';
+import { demoFor } from '../../data/demos';
 
 export function getStaticPaths() {
   return projects.map((p) => ({ params: { slug: p.slug }, props: { p } }));
@@ -17,6 +18,7 @@ interface Props {
 const { p } = Astro.props;
 const related = projects.filter((x) => x.area === p.area && x.id !== p.id).slice(0, 4);
 const scope = areas.find((a) => a.key === p.area)!.scope;
+const demo = demoFor(p.id);
 const showIt = p.area === 'mobile' ? 'an installable APK' : 'a live link where the project can run on a free host';
 const ask = wa(`Hi ${site.name}, I'm interested in project No. ${no(p.id)}: ${p.title}. Can you tell me more?`);
 ---
@@ -71,6 +73,15 @@ const ask = wa(`Hi ${site.name}, I'm interested in project No. ${no(p.id)}: ${p.
             Comes with the source code, database, report in your college's format, PPT, diagrams, demo video, {showIt}, setup on your
             laptop, a code walkthrough and viva questions.
           </p>
+          {
+            demo && (
+              <div class="demo">
+                <p class="demo-head">{demo.badge} available</p>
+                <a class="btn btn-small" href={demo.live} data-umami-event="demo-try" data-umami-event-demo={demo.slug} data-umami-event-location="project-page">Try it live <Icon name="arrow" /></a>
+                <a class="btn btn-small btn-line" href={demo.code} data-umami-event="demo-code" data-umami-event-demo={demo.slug}>See the code</a>
+              </div>
+            )
+          }
           <div class="ask">
             <a class="btn btn-wa" data-umami-event="whatsapp" data-umami-event-location="project-page" data-umami-event-project={no(p.id)} href={ask}><Icon name="wa" />Ask about No. {no(p.id)}</a>
             <a class="btn btn-line" data-umami-event="call" data-umami-event-location="project-page" data-umami-event-project={no(p.id)} href={site.phoneHref}><Icon name="phone" />Call {site.phone}</a>
@@ -211,6 +222,24 @@ const ask = wa(`Hi ${site.name}, I'm interested in project No. ${no(p.id)}: ${p.
   .ask {
     display: grid;
     gap: 10px;
+  }
+  .demo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: rgba(29, 122, 76, 0.08);
+    border-radius: 6px;
+  }
+  .demo-head {
+    flex-basis: 100%;
+    font-weight: 600;
+    color: var(--wa);
+  }
+  .demo :global(svg) {
+    width: 1em;
+    height: 1em;
   }
   .terms {
     font-size: 0.95rem;
