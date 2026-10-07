@@ -13,7 +13,7 @@ Final years, is your guide asking for a project topic this week?
 We build final-year and mini projects with you: web, Android, ML, AI, blockchain and more. Pick one of our 77 or bring your own idea. You get the code, report, PPT and viva prep, and we explain all of it until you can present it yourself.
 
 Chat on WhatsApp: https://wa.me/918197112324?text=Hi%20Final%20Commit%2C%20I%20saw%20your%20poster%20about%20project%20topics.%20Can%20you%20help%20me%20pick%20one%3F
-All projects: https://finalcommitprojects.github.io/projects/
+All projects: https://finalcommitprojects.github.io/projects/?utm_source=whatsapp&utm_campaign=poster-deadline
 ```
 
 ## 02 · register (77 projects)
@@ -24,7 +24,7 @@ Files: `02-register-status.png`, `02-register-feed.png`
 
 We can change any of them to fit your syllabus, or build your own idea instead.
 
-See the list: https://finalcommitprojects.github.io/projects/
+See the list: https://finalcommitprojects.github.io/projects/?utm_source=whatsapp&utm_campaign=poster-register
 Ask about one: https://wa.me/918197112324?text=Hi%20Final%20Commit%2C%20I%20saw%20the%2077%20projects%20poster.%20I%20want%20to%20know%20more%20about%20one%20of%20them.
 ```
 
@@ -37,7 +37,7 @@ The question every viva panel asks: "explain this module."
 We don't hand over a zip file and disappear. We go through every line of your project's code with you, and run a mock viva before the real one.
 
 WhatsApp us: https://wa.me/918197112324?text=Hi%20Final%20Commit%2C%20I%20saw%20your%20viva%20poster.%20I%20need%20help%20with%20my%20project.
-https://finalcommitprojects.github.io
+https://finalcommitprojects.github.io?utm_source=whatsapp&utm_campaign=poster-viva
 ```
 
 ## 04 · checklist (what's included)
@@ -84,7 +84,7 @@ Files: `07-deadline-kn-status.png`, `07-deadline-kn-feed.png`
 Final year ವಿದ್ಯಾರ್ಥಿಗಳೇ, guide ಈ ವಾರ project topic ಕೇಳ್ತಿದ್ದಾರಾ? 77 projects ready ಇವೆ, ಅಥವಾ ನಿಮ್ಮ idea ತನ್ನಿ. Code, report, PPT, viva prep ಎಲ್ಲಾ ಸೇರಿ, viva ತನಕ ನಿಮ್ಮ ಜೊತೆ ಇರ್ತೀವಿ.
 
 WhatsApp: https://wa.me/918197112324?text=Hi%20Final%20Commit%2C%20I%20saw%20your%20Kannada%20poster%20about%20project%20topics.
-Projects: https://finalcommitprojects.github.io/projects/
+Projects: https://finalcommitprojects.github.io/projects/?utm_source=whatsapp&utm_campaign=poster-deadline-kn
 ```
 
 ### 08 · viva-kn
@@ -143,7 +143,7 @@ Install **WhatsApp Business** (free) on 81971 12324. Then, under Business tools:
 **Business profile**
 - Category: Education
 - Description: `Final-year and mini software projects for students across India. Code, report, PPT and viva prep included. Pick from 77 projects or bring your own idea.`
-- Website: `https://finalcommitprojects.github.io`
+- Website: `https://finalcommitprojects.github.io/?utm_source=whatsapp-business&utm_campaign=profile`
 - Hours: 10 am to 9 pm, every day
 - Email: your Gmail
 
@@ -154,7 +154,7 @@ Hi, thanks for messaging Final Commit! To help you quickly, please send:
 2. Your deadline or next review date
 3. A project from our list, or your own idea
 
-Project list: https://finalcommitprojects.github.io/projects/
+Project list: https://finalcommitprojects.github.io/projects/?utm_source=whatsapp-business&utm_campaign=auto-reply
 We reply within a few hours, between 10 am and 9 pm.
 ```
 
@@ -172,7 +172,7 @@ Sure, we can help. Can you tell us your course and year, your college, your dead
 
 /list
 ```
-Here's the full list of 77 projects: https://finalcommitprojects.github.io/projects/
+Here's the full list of 77 projects: https://finalcommitprojects.github.io/projects/?utm_source=whatsapp-business&utm_campaign=auto-reply
 Any of them can be changed to fit your syllabus. Which one is closest to what you want?
 ```
 
