@@ -28,11 +28,11 @@ export interface Project {
 
 // `scope` is the realistic note shown on every project page in that area.
 export const areas: { key: AreaKey; label: string; short: string; scope: string }[] = [
-  { key: 'web', label: 'Web apps', short: 'Web', scope: 'Hosted on a free tier for your demo. Any payments run in test mode, so no real money moves.' },
+  { key: 'web', label: 'Web apps', short: 'Web', scope: 'Hosted on a free tier for your demo. If the project takes payments, they run in test mode, so no real money moves.' },
   { key: 'mobile', label: 'Mobile apps', short: 'Mobile', scope: "Built and demoed on Android. iOS needs a Mac and a paid Apple developer account, so we don't promise it." },
-  { key: 'ml', label: 'Machine learning', short: 'ML', scope: 'Trained on a public dataset that we name in the report. Accuracy depends on that data, and the report says so plainly.' },
-  { key: 'vision', label: 'Deep learning & vision', short: 'Vision', scope: 'Uses transfer learning on a public dataset, so it trains and runs on a normal laptop. It does well on clear images and worse on blurry or unusual ones; the report shows both.' },
-  { key: 'genai', label: 'NLP & generative AI', short: 'GenAI', scope: "Uses the Gemini API's free tier for the demo, and can switch to a local model if your college wants it offline. Answers are only as good as the data behind them." },
+  { key: 'ml', label: 'Machine learning', short: 'ML', scope: 'Trained on a public dataset that we name in the report, with the accuracy it actually reaches on that data.' },
+  { key: 'vision', label: 'Deep learning & vision', short: 'Vision', scope: 'Trains and runs on a normal laptop, using public data. It works well on clear images and worse on blurry or unusual ones, and the report includes examples of each.' },
+  { key: 'genai', label: 'NLP & generative AI', short: 'GenAI', scope: 'Runs on free tiers or on your laptop. Results depend on the data behind them, and the report includes examples where it gets things wrong.' },
   { key: 'data', label: 'Data analytics', short: 'Data', scope: "Uses public datasets, with the source named. Dashboards in Power BI or Tableau, or in Streamlit if you can't install those." },
   { key: 'security', label: 'Cybersecurity', short: 'Security', scope: 'Built for learning and defence, and tested only on systems and data you own. Nothing here attacks real targets.' },
   { key: 'blockchain', label: 'Blockchain', short: 'Blockchain', scope: 'Runs on a free Ethereum test network, so no real cryptocurrency is involved.' },
@@ -270,15 +270,16 @@ const raw: Raw[] = [
     level: 'Major',
     stack: ['React Native', 'Node.js', 'MongoDB'],
     summary:
-      'Faculty show a QR code that changes every few seconds. Students can only mark attendance from inside the classroom.',
+      'Faculty show a QR code that changes every few seconds, and the app checks that the student is near the classroom.',
     features: [
-      'Rotating QR code so it cannot be shared',
-      'Geofence check on the classroom location',
+      'QR code that changes every few seconds, so a forwarded screenshot expires quickly',
+      'Location check against the classroom',
       'Attendance percentage per subject',
       'Shortage alerts for students below 75%',
       'Export to Excel for the department',
     ],
     suits: ENGG,
+    limits: "It makes proxy attendance much harder, not impossible: someone relaying the QR live or faking GPS can still get through. The report discusses this.",
   },
   {
     title: 'Mandi Price App for Farmers',
@@ -629,7 +630,7 @@ const raw: Raw[] = [
     ],
     suits: UG_PG,
     featured: true,
-    limits: "Answers come only from the documents you load. If a question isn't covered there, it says so instead of guessing.",
+    limits: "It answers from the documents you load and shows the source for each answer, so you can check it. Like any LLM it can still get things wrong, and the report discusses when.",
   },
   {
     title: 'AI Resume Screener and Ranker',

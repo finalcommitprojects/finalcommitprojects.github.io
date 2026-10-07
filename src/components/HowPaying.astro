@@ -1,5 +1,6 @@
 ---
 import Tick from './marks/Tick.astro';
+import { MINI, fmt, ranges } from '../data/pricing';
 
 // Stages and promises here are public commitments. Change them only if the terms page changes too.
 const stages: [string, string, string][] = [
@@ -13,10 +14,10 @@ const promises = [
   "A written quote before you pay anything. It doesn't change once you accept it.",
   'A receipt for every payment.',
   "If we can't deliver a stage, you don't pay for it. If you already paid for it, you get that part back.",
-  'Your own private GitHub repo from the first day, so you can watch every commit.',
-  'We never build the same project for two students from the same college and batch.',
+  'Read access to your private GitHub repo from your first payment, so you can watch every commit.',
+  'Nobody in your college and batch gets the same idea. Every build is written from scratch.',
   "Your report is written for your project. If your college's similarity check (DrillBit, Turnitin or URKUND) flags it over the limit, we rewrite those parts free.",
-  'Hosted free with a live link until your viva.',
+  'Web and AI projects hosted free with a live link until your viva. Android apps come as an APK you can install.',
 ];
 ---
 
@@ -45,6 +46,32 @@ const promises = [
           </div>
         ))
       }
+    </div>
+
+    <div class="prices">
+      <h3>What projects usually cost</h3>
+      <div class="ledger" role="table" aria-label="Price ranges">
+        <div class="row head two" role="row"><span role="columnheader">Area</span><span role="columnheader">Usual range</span></div>
+        <div class="row two" role="row"><span role="cell">Mini project, any area (2nd or 3rd year)</span><span class="pay mono" role="cell">{fmt(MINI)}</span></div>
+        {
+          ranges.map((r) => (
+            <div class="row two" role="row">
+              <span role="cell">{r.label}</span>
+              <span class="pay mono" role="cell">{fmt(r.range)}</span>
+            </div>
+          ))
+        }
+      </div>
+      <p class="fine">
+        This includes the code, report, PPT, diagrams, demo video, setup, walkthrough and viva prep. Where you land in the range depends on
+        the number of modules and the report length. Your exact price is in the written quote, before you pay anything.
+      </p>
+      <p class="fine">
+        <strong>Hosting:</strong> web and AI projects get a live link, hosted free on services like Vercel, Render or Hugging Face until
+        your viva. Free servers sleep when idle, so the first load can take up to a minute; we wake it before your review. If you want
+        your own domain (about ₹500 to ₹900 a year) or an always-on server (about ₹400 to ₹1,000 a month), you pay the provider directly,
+        with nothing added by us.
+      </p>
     </div>
 
     <div class="promises">
@@ -135,12 +162,32 @@ const promises = [
       grid-area: pay;
     }
   }
+  .prices,
   .promises {
     margin-top: clamp(32px, 4vw, 48px);
     max-width: 52em;
   }
+  .row.two {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  @media (max-width: 759px) {
+    .row.two {
+      grid-template-areas: none;
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+    .row.two.head {
+      display: grid;
+    }
+    .row.two > span {
+      grid-area: auto;
+    }
+  }
   h3 {
     margin-bottom: 14px;
+  }
+  .prices .pay {
+    font-size: 1rem;
+    white-space: nowrap;
   }
   ul {
     display: grid;

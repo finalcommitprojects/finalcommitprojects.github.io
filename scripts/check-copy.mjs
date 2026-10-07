@@ -1,20 +1,20 @@
-// Fails the build if copy that students read as fake, or that we no longer promise, creeps back into the site.
+// House-style check on the built site: fails on wording we don't use.
 // Run after `npm run build`: node scripts/check-copy.mjs
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
 const BANNED = [
-  [/anydesk/i, 'AnyDesk (associated with UPI fraud; we use Google Meet screen share)'],
-  [/ready to build|projects ready/i, '"ready" claims (they are ideas, built from scratch)'],
+  [/anydesk/i, 'AnyDesk (setup is by Google Meet screen share)'],
+  [/ready to build|projects ready/i, '"ready" (the list is project ideas)'],
   [/75\+/, '"75+" (the count is 77)'],
-  [/all done/i, '"all done" (staged, pre-ticked visuals)'],
-  [/\(we did\.\)/i, 'cute aside'],
+  [/all done/i, '"all done"'],
+  [/\(we did\.\)/i, 'aside'],
   [/\bhonestly\b/i, '"honestly"'],
   [/[—–]/, 'em/en dash'],
-  [/price\? depends|depends on scope/i, 'vague price line (use the payment stages)'],
-  [/pay in parts/i, '"pay in parts" (link to how paying works instead)'],
-  [/research paper/i, 'research-paper writing (not offered)'],
-  [/\bthe register\b|>Register</, '"register" wording (they are project ideas)'],
+  [/price\? depends|depends on scope/i, 'price wording (use the price table)'],
+  [/pay in parts/i, '"pay in parts" (link to the payment stages)'],
+  [/research paper/i, 'research papers (not offered)'],
+  [/\bthe register\b|>Register</, '"register" (use "project ideas")'],
 ];
 
 const files = [];
