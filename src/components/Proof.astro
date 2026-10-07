@@ -12,7 +12,7 @@ import Icon from './Icon.astro';
             <span class="dot" aria-hidden="true" />
             Sample projects we've built
           </h2>
-          <p>Final Commit started in October 2026. These samples show the kind of work you'd get: each one runs, and its code is public.</p>
+          <p>Final Commit started in October 2026. These samples show the kind of work you'd get: each one runs live, and the full code comes with the project.</p>
           <p class="swipe" aria-hidden="true">{demos.length} projects · swipe →</p>
         </div>
         <ul class="cards">
@@ -28,9 +28,6 @@ import Icon from './Icon.astro';
                 <div class="links">
                   <a class="btn btn-small" href={d.live} data-umami-event="demo-try" data-umami-event-demo={d.slug} data-umami-event-location="proof">
                     Try it live <Icon name="arrow" />
-                  </a>
-                  <a class="btn btn-small btn-line" href={d.code} data-umami-event="demo-code" data-umami-event-demo={d.slug}>
-                    See the code
                   </a>
                   {d.sample && (
                     <a class="sample" href={d.sample} data-umami-event="demo-samples" data-umami-event-demo={d.slug}>
