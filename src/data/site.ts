@@ -2,9 +2,9 @@
 export const site = {
   name: 'Final Commit',
   url: 'https://finalcommitprojects.github.io',
-  tagline: 'Final-year projects, built with you and explained till your viva.',
+  tagline: 'Student projects and research papers, built with you and explained.',
   description:
-    'Final-year and mini software projects for BE, B.Tech, MCA, BCA, B.Sc and M.Tech students across India, built with you from scratch. Nothing to pay until your guide approves the synopsis. Code, report, PPT and viva prep included.',
+    'Software projects and research papers for BE, B.Tech, MCA, BCA, B.Sc and M.Tech students across India, from mini projects to final-year work, built with you from scratch. Nothing to pay until your guide approves the synopsis. Code, report, PPT and viva prep included.',
   phone: '+91 81971 12324',
   phoneHref: 'tel:+918197112324',
   whatsapp: '918197112324',
