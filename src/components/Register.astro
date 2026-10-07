@@ -1,5 +1,6 @@
 ---
 import { areaLabel, no, type Project } from '../data/projects';
+import { demoFor } from '../data/demos';
 
 interface Props {
   items: Project[];
@@ -26,7 +27,10 @@ const { items, listId } = Astro.props;
               <span class="sr-only">No. </span>
               {no(p.id)}
             </span>
-            <span class="reg-title">{p.title}</span>
+            <span class="reg-title">
+              {p.title}
+              {demoFor(p.id) && <span class="demo-badge">Demo</span>}
+            </span>
             <span class="reg-meta">
               <span class="reg-area">{areaLabel(p.area)}</span>
               <span class="reg-stack mono">{p.stack.slice(0, 3).join(', ')}</span>
@@ -105,6 +109,18 @@ const { items, listId } = Astro.props;
   }
   .reg-meta {
     display: contents;
+  }
+  .demo-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: var(--wa);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    vertical-align: 2px;
   }
   .reg-area,
   .reg-level {
