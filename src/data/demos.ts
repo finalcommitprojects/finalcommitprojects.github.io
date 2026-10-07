@@ -99,6 +99,18 @@ export const demos: Demo[] = [
     badge: 'Live demo',
     builtWith: 'face-api.js for recognition and MediaPipe for the blink check, in the browser. The full version runs OpenCV and a face-recognition model on a Flask server with SQLite.',
   },
+  {
+    projectId: 28,
+    slug: 'drowsiness',
+    title: 'Driver drowsiness detection',
+    kind: 'Computer vision · runs in the browser',
+    blurb: 'Watches your eyes, yawns and head through the camera and sounds an alarm if you nod off. Tested on real video: normal blinking and talking never set it off.',
+    live: 'https://finalcommitprojects.github.io/demo-drowsiness/',
+    code: 'https://github.com/finalcommitprojects/demo-drowsiness',
+    thumb: '/demos/drowsiness.png',
+    badge: 'Live demo',
+    builtWith: 'MediaPipe Face Landmarker in the browser. The full version runs Python with OpenCV and MediaPipe on a Raspberry Pi with a camera and buzzer.',
+  },
 ];
 
 export const demoFor = (projectId: number) => demos.find((d) => d.projectId === projectId);
