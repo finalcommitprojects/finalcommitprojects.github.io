@@ -1,0 +1,101 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { site } from '../data/site';
+---
+
+<Legal
+  title="Terms"
+  description="How Final Commit works with students: the quote, the payment stages, changes, exclusivity, plagiarism, ownership and support."
+  updated="7 October 2026"
+>
+  <p>
+    These terms cover every project we build with a student. They're written in plain English on purpose. If anything here is unclear,
+    ask us on WhatsApp at {site.phone} before you pay anything.
+  </p>
+
+  <h2>Who we are</h2>
+  <p>
+    Final Commit is run by two software developers in India. We build software projects with final-year and mini-project students, and
+    prepare them to explain and defend the work. Contact: WhatsApp or call {site.phone}, or email {site.email}.
+  </p>
+
+  <h2>Your part, and academic integrity</h2>
+  <p>
+    We build the project with you and teach you every part of it, so you can explain it in your reviews and your viva. You're
+    responsible for following your college's rules on outside help. We won't attend a review, a viva or an exam on your behalf.
+  </p>
+
+  <h2>The quote</h2>
+  <p>
+    After a free call you get a written quote with the scope, the tech stack, the deliverables and the dates. Once you accept it, the
+    price doesn't change. If you later ask for something outside that scope, we agree the extra time and cost with you in writing
+    before doing it.
+  </p>
+
+  <h2>Payment</h2>
+  <table>
+    <thead><tr><th>Stage</th><th>You pay</th></tr></thead>
+    <tbody>
+      <tr><td>Free call, written quote and synopsis</td><td>₹0</td></tr>
+      <tr><td>Your guide approves the synopsis</td><td>30%</td></tr>
+      <tr><td>Working demo on a video call</td><td>40%</td></tr>
+      <tr><td>Setup on your laptop, code walkthrough and mock viva</td><td>30%</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Smaller jobs on a project you've already started (fixes, new features, the report, viva prep) get a written quote the same way,
+    and you pay after you've seen the work: in one go for a small job, or in stages for a bigger one.
+  </p>
+  <p>
+    You pay each part only after that stage is done. You get a receipt for every payment. We take UPI or bank transfer. We will never
+    ask you for an OTP, a password, or to install a remote-control app.
+  </p>
+
+  <h2>Building and seeing the work</h2>
+  <p>
+    Your project is built in a private GitHub repository that you can see from the first day. You get a working demo before each review
+    your college holds.
+  </p>
+
+  <h2>Changes</h2>
+  <p>
+    Small changes your guide asks for are included until your final submission. If the whole idea changes halfway, we agree a new
+    timeline, and any change in price, in writing first.
+  </p>
+
+  <h2>Exclusivity</h2>
+  <p>We never build the same project for two students from the same college and batch.</p>
+
+  <h2>Plagiarism</h2>
+  <p>
+    Your report is written for your project, not copied from another report. If your college's similarity check (for example DrillBit,
+    Turnitin or URKUND) flags it above the college's limit, send us the check report and we rewrite the flagged parts free.
+  </p>
+
+  <h2>Ownership</h2>
+  <p>
+    Once the final payment is made, the code and documents we made for your project are yours. We keep a private copy only to support
+    you, and we never publish your project or show it to other students without your permission.
+  </p>
+
+  <h2>Hosting</h2>
+  <p>
+    We host your project free, with a live link, until your viva. If you want your own domain or an always-on server, you pay the
+    provider directly at their price; we don't add anything on top.
+  </p>
+
+  <h2>Support</h2>
+  <p>
+    Until your viva: help getting the demo running before reviews, reinstallation if your laptop changes, answers about your code on
+    WhatsApp, and a mock viva. We reply on WhatsApp between {site.hours.toLowerCase()}.
+  </p>
+
+  <h2>If we can't deliver</h2>
+  <p>
+    If we can't deliver a stage, you don't pay for it, and if you've already paid for it you get that money back. The{' '}
+    <a href="/refunds/">refund policy</a> has the details.
+  </p>
+
+  <h2>Law</h2>
+  <p>These terms are governed by the laws of India. If something goes wrong, talk to us first; we'd rather fix it.</p>
+</Legal>

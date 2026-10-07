@@ -4,7 +4,7 @@ export const site = {
   url: 'https://finalcommitprojects.github.io',
   tagline: 'Final-year projects, built with you and explained till your viva.',
   description:
-    'Software projects for BE, B.Tech, MCA, BCA, B.Sc and M.Tech students across India. Pick from 75+ projects or bring your own idea. Code, report, PPT, diagrams and viva prep included.',
+    'Final-year and mini software projects for BE, B.Tech, MCA, BCA, B.Sc and M.Tech students across India, built with you from scratch. Nothing to pay until your guide approves the synopsis. Code, report, PPT and viva prep included.',
   phone: '+91 81971 12324',
   phoneHref: 'tel:+918197112324',
   whatsapp: '918197112324',

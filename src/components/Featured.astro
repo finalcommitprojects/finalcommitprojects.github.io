@@ -9,10 +9,10 @@ const featured = projects.filter((p) => p.featured);
 <section class="sec" id="projects" aria-labelledby="projects-title">
   <div class="wrap">
     <div class="sec-head">
-      <h2 id="projects-title"><span class="dot" aria-hidden="true"></span>From the register</h2>
+      <h2 id="projects-title"><span class="dot" aria-hidden="true"></span>Project ideas</h2>
       <p>
-        A few to start with. The full register has {projects.length} projects in {areas.length} areas, and we can change any of them
-        to fit your syllabus or what your guide wants.
+        A few to start with. The full list has {projects.length} ideas in {areas.length} areas. These aren't ready-made downloads: we
+        build yours from scratch, changed to fit your syllabus and what your guide wants.
       </p>
     </div>
 
@@ -30,7 +30,7 @@ const featured = projects.filter((p) => p.featured);
           ))
         }
       </ul>
-      <a class="btn" href="/projects/">Open the full register <Icon name="arrow" /></a>
+      <a class="btn" href="/projects/">See all {projects.length} ideas <Icon name="arrow" /></a>
     </div>
   </div>
 </section>

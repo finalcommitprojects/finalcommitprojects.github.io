@@ -15,7 +15,6 @@ const year = new Date().getFullYear();
           <p class="lede">
             Tell us your course, your deadline and what you have in mind. {site.replyTime} We're around {site.hours.toLowerCase()}.
           </p>
-          <p class="note last-commit" aria-hidden="true">last commit: viva done ✓</p>
         </div>
 
         <ul class="ways">
@@ -46,6 +45,9 @@ const year = new Date().getFullYear();
       <li><a href="/projects/">All projects</a></li>
       <li><a href="/#idea">Your idea</a></li>
       <li><a href="/#faq">FAQ</a></li>
+      <li><a href="/terms/">Terms</a></li>
+      <li><a href="/refunds/">Refunds</a></li>
+      <li><a href="/privacy/">Privacy</a></li>
       {site.instagram && <li><a href={site.instagram} rel="me">Instagram</a></li>}
       {site.youtube && <li><a href={site.youtube} rel="me">YouTube</a></li>}
     </ul>
@@ -75,10 +77,6 @@ const year = new Date().getFullYear();
   .contact-copy {
     display: grid;
     gap: 18px;
-  }
-  .last-commit {
-    transform: rotate(-2deg);
-    transform-origin: left;
   }
   .ways {
     margin: 0;

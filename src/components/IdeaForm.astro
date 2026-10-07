@@ -8,10 +8,10 @@ import Icon from './Icon.astro';
     <div class="sec-head">
       <h2 id="idea-title"><span class="dot" aria-hidden="true"></span>Have your own idea?</h2>
       <p>
-        Half an idea is fine, and so is a base paper your guide handed you with no other instructions. Fill in the blanks below and
-        WhatsApp opens with the message already written, so all you do is press send.
+        Half an idea is fine, and so is a base paper from your guide with no other instructions. Already building something? Say so
+        below. Fill in what you can; WhatsApp opens with the message written, and you decide whether to send it.
       </p>
-      <p class="privacy">Nothing is saved on this website. The message goes straight from your phone to ours.</p>
+      <p class="privacy">Nothing you type here is saved on this website. Your college is optional; it only helps us follow your report format.</p>
     </div>
 
     <form class="sheet form" id="idea-form" data-wa={site.whatsapp} data-email={site.email} novalidate>
@@ -29,13 +29,23 @@ import Icon from './Icon.astro';
           <option>PG (M.Tech / MCA / M.Sc)</option>
         </select>{' '}
         at{' '}
-        <label class="sr-only" for="f-college">College or university</label>
-        <input id="f-college" name="college" placeholder="your college" size="15" autocomplete="off" />.
+        <label class="sr-only" for="f-college">College or university (optional, helps us follow your report format)</label>
+        <input id="f-college" name="college" placeholder="your college (optional)" size="20" autocomplete="off" />.
+      </p>
+
+      <p>
+        <label for="f-stage">Where I am:</label>{' '}
+        <select id="f-stage" name="stage">
+          <option>haven't started</option>
+          <option>picked a topic</option>
+          <option>already building it</option>
+          <option>built it, need report, PPT or viva prep</option>
+        </select>
       </p>
 
       <p><label for="f-idea">My project idea:</label></p>
       <textarea id="f-idea" name="idea" rows="4" required aria-describedby="idea-error"
-        placeholder="A few lines is enough. What should it do, and who uses it?"></textarea>
+        placeholder="A few lines is enough. What should it do? If you've started, what's done and what's stuck?"></textarea>
 
       <p>
         I'd like to build it with{' '}
@@ -78,6 +88,7 @@ import Icon from './Icon.astro';
       const lines = ['Hi Final Commit, I have a project idea.', ''];
       lines.push(`Course: ${course || '-'} (${field('year')})`);
       if (college) lines.push(`College: ${college}`);
+      lines.push(`Where I am: ${field('stage')}`);
       lines.push(`Idea: ${field('idea')}`);
       lines.push(`Tech: ${field('stack') || 'open to suggestions'}`);
       if (field('deadline')) lines.push(`Deadline: ${field('deadline')}`);

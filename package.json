@@ -19,12 +19,6 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "@fontsource-variable/anek-kannada": "^5.3.0",
-    "@fontsource-variable/noto-serif-kannada": "^5.3.0",
-    "@fontsource/baloo-tamma-2": "^5.3.0",
-    "jsqr": "^1.4.0",
-    "pngjs": "^7.0.0",
-    "qrcode": "^1.5.4",
     "typescript": "^6.0.3"
   }
 }

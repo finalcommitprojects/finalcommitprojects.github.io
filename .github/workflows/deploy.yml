@@ -27,6 +27,7 @@ jobs:
       - run: npm run check
       - run: npm run build
       - run: node scripts/check-links.mjs
+      - run: node scripts/check-copy.mjs
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist

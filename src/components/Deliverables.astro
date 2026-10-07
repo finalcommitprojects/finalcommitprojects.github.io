@@ -1,38 +1,36 @@
 ---
-import Tick from './marks/Tick.astro';
-
 const items: [string, string][] = [
-  ['Source code', 'clean, commented and yours to keep'],
-  ['Database and sample data', 'set up and ready for the demo'],
-  ['Project report', "in your college's format"],
+  ['Source code', 'in your private GitHub repo, commented, yours to keep'],
+  ['Database and sample data', 'set up for the demo'],
+  ['Project report', "in your college's format, written for your project"],
   ['PPT for every review', 'review 1, review 2 and the final'],
   ['Synopsis and abstract', 'for your guide to approve'],
-  ['UML, DFD and ER diagrams', 'editable files, not screenshots'],
-  ['Demo video', 'the full flow, recorded'],
-  ['Setup on your laptop', 'over AnyDesk or Google Meet'],
-  ['Code walkthrough', 'until you can explain it back'],
-  ['Viva questions', 'with answers, for your project'],
-  ['Research paper', 'IEEE format, if you need one'],
+  ['UML, DFD and ER diagrams', 'as editable files'],
+  ['Demo video', 'a recording of the full flow'],
+  ['Live link', 'hosted free until your viva'],
+  ['Setup on your laptop', 'over a Google Meet screen share, with you in control'],
+  ['Code walkthrough', 'until you can explain each module yourself'],
+  ['Viva questions', 'with answers, written for your project'],
 ];
 ---
 
 <section class="sec" id="get" aria-labelledby="get-title">
   <div class="wrap grid">
     <div class="sec-head intro">
-      <h2 id="get-title"><span class="dot" aria-hidden="true"></span>What comes with every project</h2>
+      <h2 id="get-title"><span class="dot" aria-hidden="true"></span>What you'll receive</h2>
       <p>
-        You get everything your college asks for at submission, plus help getting ready to face the panel.
+        Everything your college asks for at submission, and the preparation to explain it to the panel yourself. You tick these off
+        as they arrive.
       </p>
-      <p class="note aside" aria-hidden="true">yes, the report too.<br />all 60 pages of it.</p>
     </div>
 
     <div class="sheet checklist">
-      <p class="sheet-head"><span class="mono">Submission checklist</span><span class="note">all done</span></p>
+      <p class="sheet-head"><span class="mono">Your submission checklist</span></p>
       <ul>
         {
           items.map(([name, detail]) => (
             <li>
-              <Tick />
+              <span class="box" aria-hidden="true" />
               <span>
                 <strong>{name}</strong> <span class="detail">{detail}</span>
               </span>
@@ -55,11 +53,6 @@ const items: [string, string][] = [
       gap: 64px;
       align-items: start;
     }
-  }
-  .aside {
-    transform: rotate(-2deg);
-    transform-origin: left;
-    margin-top: 6px;
   }
   .checklist {
     padding: 32px 22px 32px 0;
@@ -86,11 +79,6 @@ const items: [string, string][] = [
     text-transform: uppercase;
     color: var(--ink-2);
   }
-  .sheet-head .note {
-    font-size: 1.15rem;
-    line-height: 32px;
-    transform: rotate(-3deg);
-  }
   ul {
     margin: 0;
     padding: 0;
@@ -101,10 +89,16 @@ const items: [string, string][] = [
     grid-template-columns: 62px minmax(0, 1fr);
     align-items: start;
   }
-  li :global(.tick) {
+  /* empty box: the student ticks it when the item arrives */
+  .box {
     justify-self: center;
-    margin-top: 2px;
+    width: 18px;
+    height: 18px;
+    margin-top: 7px;
     margin-left: -16px;
+    border: 2px solid var(--ink-2);
+    border-radius: 3px;
+    background: #fff;
   }
   strong {
     font-weight: 600;

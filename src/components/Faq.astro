@@ -3,32 +3,52 @@ import { site } from '../data/site';
 
 const faqs: [string, string][] = [
   [
-    'How much does a project cost?',
-    "It depends on the project, the tech stack and how much of the report work you need from us. Tell us what you want and we'll give you a clear price on the call. You pay in parts by UPI or bank transfer, not all at once.",
+    "How do I know this is genuine and you won't disappear with my money?",
+    "You don't pay anything until your guide approves the synopsis. After that you pay in three parts, each after you've seen the work: the approved synopsis, a working demo on a video call, and setup on your laptop. You also get your own private GitHub repo from the first day, so you can watch the project being built. And you can video call us before you decide anything.",
   ],
   [
-    'How long does it take?',
-    "A mini project usually takes 1 to 2 weeks. A major project takes 3 to 6. If your review is close, tell us the date first and we'll tell you honestly whether it can be done.",
+    'How much does a project cost?',
+    "It depends on the area, the number of modules and the report length. After a free call you get a written quote, before you pay anything, and it doesn't change once you accept it. The payment stages are listed under how paying works.",
+  ],
+  [
+    "I've already started my project. Can you help with just part of it?",
+    "Yes. Send us your code (a GitHub link or a zip) and tell us what your guide wants. We can fix what's broken, add features, write the report and PPT, or prepare you for the viva on the code you already have. You get a written quote first, and you pay after you've seen the work.",
+  ],
+  [
+    'Will someone in my college get the same project?',
+    "No. We never build the same project for two students from the same college and batch, and that's written in our terms. Even when you pick an idea from our list, the code, report and diagrams are made for you.",
+  ],
+  [
+    "Will my report pass my college's plagiarism check?",
+    "It's written for your project, not copied from an old report. Most colleges check with DrillBit, Turnitin or URKUND and allow 20 to 30% similarity. If yours is flagged over the limit, we rewrite those parts free.",
   ],
   [
     'Will I actually understand the code?',
-    "Yes. That's what the walkthrough sessions are for. We go through it with you until you can explain each module yourself, and the viva sheet covers the questions panels usually ask.",
+    "Yes. The walkthrough sessions are for exactly that. We go through each module until you can explain it yourself, and the viva sheet covers the questions panels usually ask. You can also follow the build in your GitHub repo as it happens.",
+  ],
+  [
+    'How long does it take?',
+    "A mini project usually takes 1 to 2 weeks and a major project 3 to 6. Tell us your review date first, and we'll say on the call whether it's realistic.",
+  ],
+  [
+    'How do you set it up on my laptop?',
+    "Over a Google Meet screen share. You stay in control of your laptop the whole time: we tell you what to click. We never ask you to install remote-control apps, and we never ask for an OTP.",
   ],
   [
     "Can you follow my college's report format?",
-    "Send us the template, or a senior's report. Margins, fonts, chapter order, certificate and declaration pages, all of it. VTU, Anna University, AKTU, JNTU, Mumbai University black books, autonomous colleges: all fine.",
+    "Send us the template, or a senior's report. Margins, fonts, chapter order, certificate and declaration pages, all of it. VTU, Anna University, AKTU, JNTU, Mumbai University black books and autonomous colleges are all fine.",
   ],
   [
     'My guide gave me an IEEE base paper. Can you build that?',
-    "Yes. Send the paper. We'll read it, tell you what can realistically be built in your time, and implement it. If your college wants the report in paper format, we write that too.",
+    "Yes. Send the paper. We'll read it, tell you what can realistically be built in your time, and implement it.",
   ],
   [
     'Can I change things after we start?',
-    "Small changes, any time. If the whole idea changes halfway, we'll talk about the timeline again.",
+    "Small changes, any time. If the whole idea changes halfway, we'll agree a new timeline first.",
   ],
   [
     "I'm not in your city. Does that work?",
-    "Everything happens online, over WhatsApp, Google Meet and AnyDesk. We work with students anywhere in India.",
+    'Everything happens online, over WhatsApp and Google Meet. We work with students anywhere in India.',
   ],
   [
     'Do you do hardware or IoT projects?',
@@ -40,11 +60,11 @@ const faqs: [string, string][] = [
   ],
   [
     'Do you take 2nd and 3rd year mini projects?',
-    'Yes. Mini projects, semester projects and internship projects too. Most projects in the register can be cut down to mini-project size.',
+    'Yes. Mini projects, semester projects and internship projects too. Most ideas on our list can be cut down to mini-project size.',
   ],
   [
     'What do you need from me to start?',
-    `Your course, your deadline, the project (from the register or your own idea) and your college's report format if you have it. A WhatsApp message to ${site.phone} is enough to begin.`,
+    `Your course, your deadline, the project (from our list or your own idea) and your college's report format if you have it. A WhatsApp message to ${site.phone} is enough to begin.`,
   ],
 ];
 ---
@@ -53,7 +73,6 @@ const faqs: [string, string][] = [
   <div class="wrap grid">
     <div class="sec-head">
       <h2 id="faq-title"><span class="dot" aria-hidden="true"></span>Questions students ask</h2>
-      <p class="note rubric" aria-hidden="true">answer all questions.<br />(we did.)</p>
     </div>
 
     <div class="paper">
@@ -84,10 +103,6 @@ const faqs: [string, string][] = [
       gap: 64px;
       align-items: start;
     }
-  }
-  .rubric {
-    transform: rotate(-2deg);
-    transform-origin: left;
   }
   .paper {
     border-top: 2px solid var(--ink);
