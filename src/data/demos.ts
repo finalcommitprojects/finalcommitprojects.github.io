@@ -63,6 +63,18 @@ export const demos: Demo[] = [
     badge: 'Android APK',
     builtWith: 'Kotlin, Jetpack Compose and Room (native Android). The same app can be built in Flutter with Firebase.',
   },
+  {
+    projectId: 62,
+    slug: 'blockchain-voting',
+    title: 'Blockchain e-voting',
+    kind: 'Blockchain · runs in the browser',
+    blurb: 'Cast signed votes, mine them into blocks, then try to change one. The chain shows which block was touched and why re-mining it still fails.',
+    live: 'https://finalcommitprojects.github.io/demo-blockchain-voting/',
+    code: 'https://github.com/finalcommitprojects/demo-blockchain-voting',
+    thumb: '/demos/blockchain-voting.png',
+    badge: 'Live demo',
+    builtWith: 'A small blockchain in JavaScript (SHA-256 proof of work, ECDSA-signed votes, Merkle roots). The full version uses a Solidity contract on an Ethereum test network with MetaMask.',
+  },
 ];
 
 export const demoFor = (projectId: number) => demos.find((d) => d.projectId === projectId);
