@@ -9,6 +9,7 @@ export interface Demo {
   code: string;
   thumb: string; // under public/
   badge: string;
+  sample?: string; // sample report, PPT and diagrams
 }
 
 export const demos: Demo[] = [
@@ -22,6 +23,18 @@ export const demos: Demo[] = [
     code: 'https://github.com/finalcommitprojects/demo-handwriting',
     thumb: '/demos/handwriting.png',
     badge: 'Digits demo',
+  },
+  {
+    projectId: 8,
+    slug: 'lost-found',
+    title: 'Campus Lost & Found',
+    kind: 'Full web app · Express + SQLite',
+    blurb: 'Post, search and claim items with a proof question, then arrange the hand-over in messages. Comes with a sample synopsis, report chapter, PPT and diagrams.',
+    live: 'https://finalcommitprojects.github.io/demo-lost-found/',
+    code: 'https://github.com/finalcommitprojects/demo-lost-found',
+    thumb: '/demos/lost-found.png',
+    badge: 'Live demo',
+    sample: 'https://github.com/finalcommitprojects/demo-lost-found/tree/main/samples',
   },
 ];
 

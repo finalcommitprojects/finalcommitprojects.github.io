@@ -31,6 +31,11 @@ import Icon from './Icon.astro';
                   <a class="btn btn-small btn-line" href={d.code} data-umami-event="demo-code" data-umami-event-demo={d.slug}>
                     See the code
                   </a>
+                  {d.sample && (
+                    <a class="sample" href={d.sample} data-umami-event="demo-samples" data-umami-event-demo={d.slug}>
+                      Sample report, PPT and diagrams
+                    </a>
+                  )}
                 </div>
               </div>
             </li>
@@ -93,6 +98,11 @@ import Icon from './Icon.astro';
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 6px;
+  }
+  .sample {
+    flex-basis: 100%;
+    font-size: 0.92rem;
+    font-weight: 600;
   }
   .links :global(svg) {
     width: 1em;

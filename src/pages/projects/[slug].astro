@@ -79,6 +79,7 @@ const ask = wa(`Hi ${site.name}, I'm interested in project No. ${no(p.id)}: ${p.
                 <p class="demo-head">{demo.badge} available</p>
                 <a class="btn btn-small" href={demo.live} data-umami-event="demo-try" data-umami-event-demo={demo.slug} data-umami-event-location="project-page">Try it live <Icon name="arrow" /></a>
                 <a class="btn btn-small btn-line" href={demo.code} data-umami-event="demo-code" data-umami-event-demo={demo.slug}>See the code</a>
+                {demo.sample && <a class="demo-sample" href={demo.sample} data-umami-event="demo-samples" data-umami-event-demo={demo.slug}>Sample report, PPT and diagrams</a>}
               </div>
             )
           }
@@ -236,6 +237,11 @@ const ask = wa(`Hi ${site.name}, I'm interested in project No. ${no(p.id)}: ${p.
     flex-basis: 100%;
     font-weight: 600;
     color: var(--wa);
+  }
+  .demo-sample {
+    flex-basis: 100%;
+    font-size: 0.92rem;
+    font-weight: 600;
   }
   .demo :global(svg) {
     width: 1em;
