@@ -1,6 +1,9 @@
 ---
 import Tick from './marks/Tick.astro';
-import { MINI, fmt, ranges } from '../data/pricing';
+import { MINI, fmt, inr, ranges } from '../data/pricing';
+
+const lowest = inr(MINI[0]);
+const highest = inr(Math.max(...ranges.map((r) => r.range[1])));
 
 // Stages and promises here are public commitments. Change them only if the terms page changes too.
 // [stage, what happens, you pay, short label for the stepper]
@@ -39,6 +42,10 @@ const promises = [
         ))
       }
     </ol>
+
+    <p class="price-line">
+      Most projects cost <strong>{lowest}</strong> (mini) to <strong>{highest}</strong> (generative AI). Exact price in a written quote.
+    </p>
 
     <details class="panel" data-open-desktop>
       <summary data-umami-event="open-panel" data-umami-event-panel="stages">What happens at each stage</summary>
@@ -183,6 +190,10 @@ const promises = [
   .prices,
   .promises {
     max-width: 52em;
+  }
+  .price-line {
+    margin: 0 0 18px;
+    font-size: 1rem;
   }
   .stepper {
     display: grid;

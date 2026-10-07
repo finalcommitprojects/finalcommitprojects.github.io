@@ -208,7 +208,7 @@ const raw: Raw[] = [
     features: [
       'Groups for flats, trips and hostel rooms',
       'Split equally, by share or by exact amount',
-      'Debts simplified to the fewest payments',
+      'Debts settled in a short list of payments',
       'UPI deep link to settle',
       'Monthly spending chart',
     ],
