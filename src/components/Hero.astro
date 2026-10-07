@@ -5,11 +5,12 @@ import Icon from './Icon.astro';
 import Circle from './marks/Circle.astro';
 import Tick from './marks/Tick.astro';
 
+// [title, detail, short chip label used on phones]
 const checks = [
-  ['₹0 until your guide approves the synopsis', 'Then three parts, each after you see the work.'],
-  ['A video call before anything', `You talk to ${site.owner.name} directly. Ask whatever you want.`],
-  ['A written quote', "The price is fixed before you pay, and it doesn't change."],
-  ['Not repeated in your college', 'Nobody in your college and batch gets the same idea.'],
+  ['₹0 until your guide approves the synopsis', 'Then three parts, each after you see the work.', '₹0 till synopsis approved'],
+  ['A video call before anything', `You talk to ${site.owner.name} directly. Ask whatever you want.`, 'Video call first'],
+  ['A written quote', "The price is fixed before you pay, and it doesn't change.", 'Fixed written quote'],
+  ['Not repeated in your college', 'Nobody in your college and batch gets the same idea.', 'Not repeated in your college'],
 ];
 
 const n = projects.length;
@@ -21,13 +22,12 @@ const n = projects.length;
       <p class="eyebrow"><span class="dot filled" aria-hidden="true"></span>Software projects for students · anywhere in India</p>
       <h1 id="hero-title">Your final-year project, built with you and <Circle>explained</Circle> till your viva.</h1>
       <p class="lede">
-        We build web apps, Android apps, machine learning and AI projects with final-year students. Pick from {n} project ideas,
-        bring your own, or get help with <a href="#started">the one you've already started</a>. The report, PPT and viva prep come with
-        it.
+        Web, Android, ML and AI projects. Pick from {n} ideas, bring your own, or get help with{' '}
+        <a href="#started">one you've already started</a>.
       </p>
       <div class="cta-row">
         <a class="btn btn-wa" data-umami-event="whatsapp" data-umami-event-location="hero" href={wa()}><Icon name="wa" />WhatsApp us</a>
-        <a class="btn btn-line" data-umami-event="browse-projects" data-umami-event-location="hero" href="/projects/">See the {n} project ideas <Icon name="arrow" /></a>
+        <a class="btn btn-line" data-umami-event="browse-projects" data-umami-event-location="hero" href="/projects/">See {n} ideas <Icon name="arrow" /></a>
       </div>
       <p class="meta">Or call <a data-umami-event="call" data-umami-event-location="hero" href={site.phoneHref}>{site.phone}</a> · {site.hours}</p>
     </div>
@@ -37,11 +37,12 @@ const n = projects.length;
         <p class="card-head mono" id="before-title">Before you pay us anything</p>
         <ul>
           {
-            checks.map(([t, d]) => (
+            checks.map(([t, d, short]) => (
               <li>
                 <Tick />
                 <span>
-                  <strong>{t}</strong>
+                  <strong class="long">{t}</strong>
+                  <strong class="short">{short}</strong>
                   <span class="d">{d}</span>
                 </span>
               </li>
@@ -150,5 +151,68 @@ const n = projects.length;
   .card-link :global(svg) {
     width: 1.1em;
     height: 1.1em;
+  }
+  .card .short {
+    display: none;
+  }
+  /* phones: the card becomes four short chips */
+  @media (max-width: 759px) {
+    .hero {
+      padding-top: 18px;
+    }
+    .eyebrow,
+    .meta {
+      display: none;
+    }
+    .grid {
+      gap: 22px;
+    }
+    .copy {
+      gap: 16px;
+    }
+    h1 {
+      font-size: 2.15rem;
+    }
+    .lede {
+      font-size: 1.02rem;
+    }
+    .cta-row {
+      margin-top: 0;
+    }
+    .card {
+      width: 100%;
+      padding: 0;
+      background: none;
+      box-shadow: none;
+    }
+    .card-head,
+    .card-link,
+    .card .d,
+    .card .long {
+      display: none;
+    }
+    .card .short {
+      display: block;
+      font-size: 0.9rem;
+      line-height: 1.25;
+    }
+    .card ul {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 0;
+    }
+    .card li {
+      grid-template-columns: 22px minmax(0, 1fr);
+      align-items: center;
+      padding: 9px 10px;
+      background: var(--paper-2);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+    }
+    .card li :global(.tick) {
+      width: 18px;
+      height: 18px;
+      margin-top: 0;
+    }
   }
 </style>

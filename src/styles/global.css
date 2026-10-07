@@ -411,6 +411,7 @@ h2 .dot {
 }
 
 .chip {
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   gap: 0.45em;
@@ -459,4 +460,93 @@ h2 .dot {
   border: 1px solid var(--rule-strong);
   border-radius: 3px;
   background: var(--paper-2);
+}
+
+/* ---------- tap-to-open panels ----------
+   Closed on phones. On wide screens that support ::details-content they render open,
+   with the summary acting as a plain heading. */
+
+details.panel {
+  border-top: 1px solid var(--rule-strong);
+}
+
+details.panel:last-of-type {
+  border-bottom: 1px solid var(--rule-strong);
+}
+
+details.panel > summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 10px 0;
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+details.panel > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.panel > summary::after {
+  content: '+';
+  flex: none;
+  font-family: var(--f-mono);
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--red);
+}
+
+details.panel[open] > summary::after {
+  content: '\2212';
+}
+
+details.panel > .panel-body {
+  padding: 4px 0 22px;
+}
+
+@media (min-width: 760px) {
+  @supports selector(::details-content) {
+    details.panel[data-open-desktop]::details-content {
+      content-visibility: visible;
+      display: block;
+    }
+    details.panel[data-open-desktop] > summary {
+      pointer-events: none;
+      font-size: 1.15rem;
+    }
+    details.panel[data-open-desktop] > summary::after {
+      content: none;
+    }
+    details.panel.quiet[data-open-desktop] {
+      border: 0;
+    }
+    details.panel.quiet[data-open-desktop] > summary {
+      display: none;
+    }
+    details.panel.quiet[data-open-desktop] > .panel-body {
+      padding: 0;
+    }
+  }
+}
+
+/* ---------- phones: tighter rhythm ---------- */
+
+@media (max-width: 759px) {
+  :root {
+    --sec-y: 44px;
+  }
+  body {
+    font-size: 1rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+  .sec-head {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
 }

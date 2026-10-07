@@ -83,4 +83,32 @@ const help: [string, string][] = [
     max-width: 40em;
     color: var(--ink-2);
   }
+  @media (max-width: 759px) {
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .cards li {
+      padding: 7px 12px;
+      border-top: 0;
+      border: 1px solid var(--rule-strong);
+      border-radius: 999px;
+    }
+    .cards h3 {
+      margin: 0;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+    .cards p {
+      display: none;
+    }
+    .foot {
+      margin-top: 18px;
+    }
+    .foot p {
+      flex-basis: 100%;
+      font-size: 0.92rem;
+    }
+  }
 </style>

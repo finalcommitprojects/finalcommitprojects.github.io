@@ -19,8 +19,8 @@ const items: [string, string][] = [
     <div class="sec-head intro">
       <h2 id="get-title"><span class="dot" aria-hidden="true"></span>What you'll receive</h2>
       <p>
-        Everything your college asks for at submission, and the preparation to explain it to the panel yourself. You tick these off
-        as they arrive.
+        Everything your college asks for at submission, and the preparation to explain it yourself. You tick these off as they
+        arrive.
       </p>
     </div>
 
@@ -105,5 +105,35 @@ const items: [string, string][] = [
   }
   .detail {
     color: var(--ink-2);
+  }
+  @media (max-width: 759px) {
+    .checklist {
+      padding: 0;
+      background: none;
+      box-shadow: none;
+      line-height: 1.4;
+    }
+    .checklist::before,
+    .sheet-head,
+    .detail,
+    .box {
+      display: none;
+    }
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    li {
+      display: block;
+      padding: 7px 12px;
+      background: var(--paper-2);
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      font-size: 0.88rem;
+    }
+    strong {
+      font-weight: 500;
+    }
   }
 </style>
