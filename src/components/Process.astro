@@ -1,11 +1,11 @@
 ---
 const steps = [
-  ['You message us', 'with a project from the register, or your own idea.', 'Day 1'],
-  ['We get on a call', '15 to 20 minutes to fix the scope, tech stack, deadline and price.', 'Day 1 or 2'],
-  ['Synopsis for your guide', 'We write the synopsis and abstract so your guide can approve the topic.', 'In 2 to 3 days'],
-  ['We build it in stages', 'You see a working demo before each review, so nothing is a surprise at the end.', 'Weeks 1 to 5'],
+  ['You message us', 'with a project idea from our list, or your own.', 'Day 1'],
+  ['Video call and written quote', 'About 20 minutes to agree the scope, tech stack and deadline. You get the quote in writing.', 'Day 1 or 2'],
+  ['Synopsis for your guide', 'We write the synopsis and abstract. You pay nothing until your guide approves it.', 'In 2 to 3 days'],
+  ['We build it in stages', 'In your private GitHub repo, where you can see every commit. You get a working demo before each review.', 'Weeks 1 to 5'],
   ['Report, PPT and diagrams', "In your college's format, ready to print and bind.", 'Before the final review'],
-  ['Setup, walkthrough, mock viva', "We install it on your laptop, take you through the code and ask you the panel's questions.", 'Before your viva'],
+  ['Setup, walkthrough, mock viva', "Setup over a Google Meet screen share, then we take you through the code and ask you the panel's usual questions.", 'Before your viva'],
 ];
 ---
 
@@ -13,11 +13,11 @@ const steps = [
   <div class="wrap">
     <div class="sec-head">
       <h2 id="how-title"><span class="dot" aria-hidden="true"></span>How it works</h2>
-      <p>Every project goes through the same six steps. We've laid them out like the index page of a record book, and each one gets signed off before the next one starts.</p>
+      <p>Every project goes through the same six steps. You approve each one before the next one starts.</p>
     </div>
 
     <div class="index">
-      <div class="ix-head" aria-hidden="true"><span>S.No</span><span>What happens</span><span>When</span><span>Sign</span></div>
+      <div class="ix-head" aria-hidden="true"><span>S.No</span><span>What happens</span><span>When</span><span>Your OK</span></div>
       <ol>
         {
           steps.map(([what, detail, when], i) => (
@@ -27,13 +27,13 @@ const steps = [
                 <strong>{what}</strong> <span class="detail">{detail}</span>
               </p>
               <span class="ix-when mono">{when}</span>
-              <span class="ix-sign" aria-hidden="true">✓</span>
+              <span class="ix-sign" aria-hidden="true"><span class="box" /></span>
             </li>
           ))
         }
       </ol>
     </div>
-    <p class="note pay">You pay in parts as the work moves along.</p>
+    <p class="pay">How much you pay at each step is on <a href="#paying">how paying works</a>.</p>
   </div>
 </section>
 
@@ -46,7 +46,7 @@ const steps = [
   .ix-head,
   li {
     display: grid;
-    grid-template-columns: var(--no-w) minmax(0, 1fr) 200px 76px;
+    grid-template-columns: var(--no-w) minmax(0, 1fr) 200px 96px;
   }
   .ix-head span,
   li > * {
@@ -89,22 +89,20 @@ const steps = [
     color: var(--ink-2);
   }
   .ix-sign {
-    font-family: var(--f-hand);
-    color: var(--red);
-    font-size: 1.6rem;
-    line-height: 1;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  li:nth-child(odd) .ix-sign {
-    transform: rotate(-6deg);
-  }
-  li:nth-child(3n) .ix-sign {
-    transform: rotate(5deg) translateX(3px);
+  .box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--ink-2);
+    border-radius: 3px;
+    background: #fff;
   }
   .pay {
-    margin-top: 22px;
-    transform: rotate(-1.5deg);
-    transform-origin: left;
+    margin-top: 18px;
+    color: var(--ink-2);
   }
   @media (max-width: 759px) {
     .index {

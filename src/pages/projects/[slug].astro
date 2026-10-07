@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import Register from '../../components/Register.astro';
 import Icon from '../../components/Icon.astro';
 import Tick from '../../components/marks/Tick.astro';
-import { areaLabel, no, projects, type Project } from '../../data/projects';
+import { areaLabel, areas, no, projects, type Project } from '../../data/projects';
 import { site, wa } from '../../data/site';
 
 export function getStaticPaths() {
@@ -15,23 +15,24 @@ interface Props {
 }
 const { p } = Astro.props;
 const related = projects.filter((x) => x.area === p.area && x.id !== p.id).slice(0, 4);
+const scope = areas.find((a) => a.key === p.area)!.scope;
 const ask = wa(`Hi ${site.name}, I'm interested in project No. ${no(p.id)}: ${p.title}. Can you tell me more?`);
 ---
 
 <Base
   title={`${p.title} project`}
-  description={`${p.title}: ${p.summary} A ${p.level.toLowerCase()} project with source code, report, PPT and viva prep.`}
+  description={`${p.title}: ${p.summary} A ${p.level.toLowerCase()} project idea, built from scratch with you, with source code, report, PPT and viva prep.`}
 >
   <article class="sec proj" aria-labelledby="p-title">
     <div class="wrap">
       <nav class="crumbs mono" aria-label="Breadcrumb">
-        <a href="/projects/">Register</a> / <a href={`/projects/?area=${p.area}`}>{areaLabel(p.area)}</a> /{' '}
+        <a href="/projects/">Project ideas</a> / <a href={`/projects/?area=${p.area}`}>{areaLabel(p.area)}</a> /{' '}
         <span aria-current="page">No. {no(p.id)}</span>
       </nav>
 
       <div class="grid">
         <div class="main">
-          <p class="pno mono"><span class="dot filled" aria-hidden="true"></span>No. {no(p.id)} · {p.level} project</p>
+          <p class="pno mono"><span class="dot filled" aria-hidden="true"></span>No. {no(p.id)} · {p.level} project idea</p>
           <h1 id="p-title">{p.title}</h1>
           <p class="lede">{p.summary}</p>
 
@@ -50,10 +51,12 @@ const ask = wa(`Hi ${site.name}, I'm interested in project No. ${no(p.id)}: ${p.
           <h2>Built with</h2>
           <ul class="tags">{p.stack.map((s) => <li>{s}</li>)}</ul>
 
-          <h2>Can it be changed?</h2>
+          <h2>What to expect</h2>
+          <p class="body">{scope}</p>
+          {p.limits && <p class="body">{p.limits}</p>}
           <p class="body">
-            Yes. If your guide wants a different stack or an extra module, or you need a smaller version for a mini project, tell us and
-            we'll adjust it.
+            Built from scratch for you in your own private GitHub repo. The stack, the modules and the size can all change to fit what
+            your guide wants.
           </p>
         </div>
 
@@ -65,14 +68,16 @@ const ask = wa(`Hi ${site.name}, I'm interested in project No. ${no(p.id)}: ${p.
             <div><dt>Suits</dt><dd>{p.suits.join(', ')}</dd></div>
           </dl>
           <p class="comes">
-            Comes with the source code, database, report in your college's format, PPT, diagrams, demo video, setup on your laptop, a
-            code walkthrough and viva questions.
+            Comes with the source code, database, report in your college's format, PPT, diagrams, demo video, a live link until your
+            viva, setup on your laptop, a code walkthrough and viva questions.
           </p>
           <div class="ask">
             <a class="btn btn-wa" data-umami-event="whatsapp" data-umami-event-location="project-page" data-umami-event-project={no(p.id)} href={ask}><Icon name="wa" />Ask about No. {no(p.id)}</a>
             <a class="btn btn-line" data-umami-event="call" data-umami-event-location="project-page" data-umami-event-project={no(p.id)} href={site.phoneHref}><Icon name="phone" />Call {site.phone}</a>
           </div>
-          <p class="note">price depends on scope.<br />asking is free.</p>
+          <p class="terms">
+            ₹0 until your guide approves the synopsis. <a href="/#paying" data-umami-event="read-paying" data-umami-event-location="project-page">How paying works</a>
+          </p>
         </aside>
       </div>
 
@@ -206,6 +211,14 @@ const ask = wa(`Hi ${site.name}, I'm interested in project No. ${no(p.id)}: ${p.
   .ask {
     display: grid;
     gap: 10px;
+  }
+  .terms {
+    font-size: 0.95rem;
+    color: var(--ink-2);
+  }
+  .terms a {
+    font-weight: 600;
+    color: var(--ink);
   }
   .related {
     margin-top: clamp(64px, 8vw, 104px);

@@ -1,0 +1,47 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { site } from '../data/site';
+---
+
+<Legal
+  title="Privacy"
+  description="What Final Commit collects, why, and what it never does with your data."
+  updated="7 October 2026"
+>
+  <h2>What we collect</h2>
+  <ul>
+    <li>What you send us on WhatsApp, by email or on a call: your name, course, college, deadline and your project idea.</li>
+    <li>Files you share for your project, such as your college's report template or your guide's base paper.</li>
+  </ul>
+
+  <h2>This website</h2>
+  <p>
+    Nothing you type into the "your idea" form is saved on this website. Pressing the button only opens WhatsApp or your email app with
+    the message written; you decide whether to send it.
+  </p>
+  <p>
+    We count visits and button taps with Umami, an analytics tool that doesn't use cookies and doesn't identify you. It tells us things
+    like how many people opened a page and how many tapped the WhatsApp button, never who they were.
+  </p>
+
+  <h2>How we use it</h2>
+  <p>
+    Only to talk to you and to build and support your project. We don't sell your data, share it with anyone else, or add you to
+    marketing lists. We never show your project to other students without your permission.
+  </p>
+
+  <h2>Your project repository</h2>
+  <p>Your GitHub repository is private. Only you and the people you invite can see it.</p>
+
+  <h2>How long we keep it</h2>
+  <p>
+    We keep your project files to support you until six months after your viva, then delete them. You can ask us to delete them earlier
+    at any time.
+  </p>
+
+  <h2>Your rights</h2>
+  <p>
+    Under India's Digital Personal Data Protection Act, 2023, you can ask what we hold about you, ask us to correct it, or ask us to
+    delete it. Message {site.phone} on WhatsApp or email {site.email}.
+  </p>
+</Legal>

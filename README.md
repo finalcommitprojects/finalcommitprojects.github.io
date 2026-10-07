@@ -15,6 +15,8 @@ Static site built with [Astro](https://astro.build). Every page is plain HTML. T
 | Deliverables checklist | `src/components/Deliverables.astro` |
 | Support promises | `src/components/Support.astro` |
 | The six steps | `src/components/Process.astro` |
+| Payment stages and written promises | `src/components/HowPaying.astro` (keep in step with `src/pages/terms.astro` and `refunds.astro`) |
+| Honest scope notes | `areas[].scope` and `limits` in `src/data/projects.ts` |
 
 Projects are numbered by their position in `projects.ts`. If you insert one in the middle, the numbers after it shift, so add new ones at the end of their area.
 
@@ -26,6 +28,7 @@ npm run dev        # http://localhost:4321, reloads on save
 npm run build      # outputs dist/
 npm run check      # type-check
 node scripts/check-links.mjs   # after a build: internal links + WhatsApp/tel/mailto targets
+node scripts/check-copy.mjs    # after a build: fails on copy we no longer use (AnyDesk, "ready" claims, em dashes...)
 ```
 
 ## Share image and icon
@@ -36,21 +39,6 @@ node scripts/check-links.mjs   # after a build: internal links + WhatsApp/tel/ma
 node scripts/shot.mjs "file://$PWD/scripts/og.html" 1200 public/og.png 0 630
 node scripts/shot.mjs "file://$PWD/scripts/icon.html" 180 public/apple-touch-icon.png 0 180
 ```
-
-## Posters
-
-`posters/` holds the WhatsApp and print poster pack. Astro does not deploy it.
-
-- `poster.html` defines 9 posters (6 English and 3 Kannada). Each renders at Status size (1080×1920) and group/Instagram size (1080×1350).
-- `flyer.html` is the A4 notice-board flyer, with a WhatsApp QR code and tear-off strips.
-- `captions.md` holds the caption for each poster, the posting plan and the WhatsApp Business texts. Each caption's wa.me link pre-fills a different message, so you can tell which poster brought a student in.
-
-```sh
-node posters/build.mjs            # renders everything to ~/Downloads/FinalCommit-posters/
-node posters/build.mjs viva       # only the posters whose id contains "viva"
-```
-
-The build fails if anything spills past the safe zone, a font fails to load, the QR code doesn't decode to the chat link, or a caption link points at the wrong number.
 
 ## Deploy
 
@@ -64,3 +52,6 @@ Notes on the look, for whoever edits it next:
 - Fonts: Fraunces for headings, IBM Plex Sans for body text, IBM Plex Mono for numbers and tags, and Kalam for handwritten notes. All are self-hosted through `@fontsource`.
 - Each section heading carries a commit dot on the margin line. The last one is filled in.
 - Avoid gradients, emoji, invented stats and invented testimonials. Add testimonials only once real students have given them.
+- Every claim on the site must be something a student can check: payment stages, the private repo, written terms. Prefer a mechanism over an adjective.
+
+Posters, the flyer, the logo files and the WhatsApp texts live in the private repo `finalcommitprojects/marketing`.

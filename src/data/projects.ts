@@ -22,18 +22,21 @@ export interface Project {
   features: string[];
   suits: string[];
   featured?: boolean;
+  /** Plain statement of what the project can't do, where a panel might test it. */
+  limits?: string;
 }
 
-export const areas: { key: AreaKey; label: string; short: string }[] = [
-  { key: 'web', label: 'Web apps', short: 'Web' },
-  { key: 'mobile', label: 'Mobile apps', short: 'Mobile' },
-  { key: 'ml', label: 'Machine learning', short: 'ML' },
-  { key: 'vision', label: 'Deep learning & vision', short: 'Vision' },
-  { key: 'genai', label: 'NLP & generative AI', short: 'GenAI' },
-  { key: 'data', label: 'Data analytics', short: 'Data' },
-  { key: 'security', label: 'Cybersecurity', short: 'Security' },
-  { key: 'blockchain', label: 'Blockchain', short: 'Blockchain' },
-  { key: 'cloud', label: 'Cloud & DevOps', short: 'Cloud' },
+// `scope` is the realistic note shown on every project page in that area.
+export const areas: { key: AreaKey; label: string; short: string; scope: string }[] = [
+  { key: 'web', label: 'Web apps', short: 'Web', scope: 'Hosted on a free tier for your demo. Any payments run in test mode, so no real money moves.' },
+  { key: 'mobile', label: 'Mobile apps', short: 'Mobile', scope: "Built and demoed on Android. iOS needs a Mac and a paid Apple developer account, so we don't promise it." },
+  { key: 'ml', label: 'Machine learning', short: 'ML', scope: 'Trained on a public dataset that we name in the report. Accuracy depends on that data, and the report says so plainly.' },
+  { key: 'vision', label: 'Deep learning & vision', short: 'Vision', scope: 'Uses transfer learning on a public dataset, so it trains and runs on a normal laptop. It does well on clear images and worse on blurry or unusual ones; the report shows both.' },
+  { key: 'genai', label: 'NLP & generative AI', short: 'GenAI', scope: "Uses the Gemini API's free tier for the demo, and can switch to a local model if your college wants it offline. Answers are only as good as the data behind them." },
+  { key: 'data', label: 'Data analytics', short: 'Data', scope: "Uses public datasets, with the source named. Dashboards in Power BI or Tableau, or in Streamlit if you can't install those." },
+  { key: 'security', label: 'Cybersecurity', short: 'Security', scope: 'Built for learning and defence, and tested only on systems and data you own. Nothing here attacks real targets.' },
+  { key: 'blockchain', label: 'Blockchain', short: 'Blockchain', scope: 'Runs on a free Ethereum test network, so no real cryptocurrency is involved.' },
+  { key: 'cloud', label: 'Cloud & DevOps', short: 'Cloud', scope: 'Designed to stay inside cloud free tiers. AWS sign-up needs a card, and we show you how to keep the bill at ₹0.' },
 ];
 
 export const areaLabel = (key: AreaKey) => areas.find((a) => a.key === key)!.label;
@@ -234,15 +237,16 @@ const raw: Raw[] = [
     level: 'Major',
     stack: ['Kotlin', 'Firebase', 'Google Maps SDK'],
     summary:
-      'One tap, or a hard shake, sends an SOS with live location to trusted contacts. It works even when the screen is locked.',
+      'One tap on a home-screen widget, or a hard shake while the app is open, sends an SOS with live location to trusted contacts.',
     features: [
-      'SOS by button or shake gesture',
+      'SOS from a home-screen widget, a button, or a shake',
       'SMS with live location to trusted contacts',
       'Nearest police stations and hospitals on a map',
       'Fake incoming call to get out of a situation',
       'Audio recording starts with the SOS',
     ],
     suits: UG_PG,
+    limits: "Android limits what apps can do in the background, so shake-to-SOS works only while the app is running. The widget and button work any time.",
   },
   {
     title: 'Medicine Reminder and Pill Tracker',
@@ -400,6 +404,7 @@ const raw: Raw[] = [
       'Web form for entering patient values',
     ],
     suits: MINI,
+    limits: 'A learning project on a public dataset, not a medical tool.',
   },
   {
     title: 'Telecom Customer Churn Prediction',
@@ -500,16 +505,18 @@ const raw: Raw[] = [
     level: 'Major',
     stack: ['Python', 'OpenCV', 'InsightFace', 'Flask', 'SQLite'],
     summary:
-      'Recognises every student in a classroom photo or webcam feed and marks attendance. A blink check stops someone holding up a photo.',
+      'Recognises students from a webcam, a few at a time, and marks attendance. A blink check adds a basic liveness test.',
     features: [
       'Face registration with a few photos per student',
-      'Several faces recognised in one frame',
-      'Blink check against photo spoofing',
+      'Recognises a few students at once in good light',
+      'Blink check as a basic liveness test',
       'Attendance export to Excel',
       'Admin panel for classes and subjects',
     ],
     suits: UG_PG,
     featured: true,
+    limits:
+      "Works best in good light with faces turned to the camera. A whole-classroom group photo isn't reliable, so we don't promise it. A blink check stops a printed photo but not a video played on a phone, and the report explains that.",
   },
   {
     title: 'Sign Language to Text and Speech',
@@ -540,6 +547,7 @@ const raw: Raw[] = [
       'Upload-and-check web demo',
     ],
     suits: ENGG,
+    limits: 'It catches fakes from the generators it was trained on. Newer generators can fool it; the report tests this and shows the results.',
   },
   {
     title: 'Helmet and Number Plate Detection',
@@ -555,6 +563,7 @@ const raw: Raw[] = [
       'Works on recorded or live video',
     ],
     suits: ENGG,
+    limits: 'Works on clear daytime video. Night footage and blurred plates lower the accuracy.',
   },
   {
     title: 'Brain Tumor Detection from MRI',
@@ -570,6 +579,7 @@ const raw: Raw[] = [
       'Upload a scan and see the result',
     ],
     suits: ENGG,
+    limits: "A learning project on a public MRI dataset, not a diagnostic tool. The report says so.",
   },
   {
     title: 'Handwritten Character Recognition',
@@ -607,18 +617,19 @@ const raw: Raw[] = [
     title: 'RAG Chatbot for College Helpdesk',
     area: 'genai',
     level: 'Major',
-    stack: ['Python', 'LangChain', 'ChromaDB', 'Gemini API or Ollama', 'Streamlit'],
+    stack: ['Python', 'LangChain', 'ChromaDB', 'Gemini API', 'Streamlit'],
     summary:
       'Answers students\' questions from the college\'s own PDFs (syllabus, rules, circulars) and shows which document each answer came from.',
     features: [
       'Admin uploads PDFs and they become searchable',
       'Answers with the source page cited',
       'Says "not in the documents" instead of guessing',
-      'Free option with a local model through Ollama',
+      'Can switch to a local model through Ollama if your college wants it offline',
       'Chat history per student',
     ],
     suits: UG_PG,
     featured: true,
+    limits: "Answers come only from the documents you load. If a question isn't covered there, it says so instead of guessing.",
   },
   {
     title: 'AI Resume Screener and Ranker',
@@ -649,6 +660,7 @@ const raw: Raw[] = [
       'Clear note that it does not replace a doctor',
     ],
     suits: ENGG,
+    limits: 'Not a medical tool. It explains a report in plain words and tells the reader to consult a doctor.',
   },
   {
     title: 'AI Mock Interviewer',
@@ -724,6 +736,7 @@ const raw: Raw[] = [
       'Works on a laptop microphone',
     ],
     suits: ENGG,
+    limits: 'Recognition gets weaker with heavy background noise and with sentences that mix languages.',
   },
   {
     title: 'Text-to-SQL Assistant',

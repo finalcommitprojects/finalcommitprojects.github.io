@@ -1,0 +1,165 @@
+---
+import Tick from './marks/Tick.astro';
+
+// Stages and promises here are public commitments. Change them only if the terms page changes too.
+const stages: [string, string, string][] = [
+  ['Free call and synopsis', 'We agree the scope and send you a written quote. Then we write the synopsis and abstract for your guide.', '₹0'],
+  ['Your guide approves the synopsis', 'Now you pay the first part. If your guide rejects the topic, we rework it, or you walk away owing nothing.', '30%'],
+  ['Working demo on a video call', 'You watch your project run, built in your own private GitHub repo.', '40%'],
+  ['Setup, walkthrough and mock viva', 'We install it on your laptop over a Google Meet screen share. You stay in control of your laptop the whole time.', '30%'],
+];
+
+const promises = [
+  "A written quote before you pay anything. It doesn't change once you accept it.",
+  'A receipt for every payment.',
+  "If we can't deliver a stage, you don't pay for it. If you already paid for it, you get that part back.",
+  'Your own private GitHub repo from the first day, so you can watch every commit.',
+  'We never build the same project for two students from the same college and batch.',
+  "Your report is written for your project. If your college's similarity check (DrillBit, Turnitin or URKUND) flags it over the limit, we rewrite those parts free.",
+  'Hosted free with a live link until your viva.',
+];
+---
+
+<section class="sec" id="paying" aria-labelledby="paying-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="paying-title"><span class="dot" aria-hidden="true"></span>How paying works</h2>
+      <p>
+        You pay in three parts, and only after you've seen something real. Nothing is paid before your guide approves the synopsis.
+      </p>
+    </div>
+
+    <div class="ledger" role="table" aria-label="Payment stages">
+      <div class="row head" role="row">
+        <span role="columnheader">Stage</span><span role="columnheader">What happens</span><span role="columnheader">You pay</span>
+      </div>
+      {
+        stages.map(([stage, what, pay], i) => (
+          <div class="row" role="row">
+            <span class="stage" role="cell">
+              <span class="n mono">{String(i + 1).padStart(2, '0')}</span>
+              {stage}
+            </span>
+            <span class="what" role="cell">{what}</span>
+            <span class:list={['pay', 'mono', { zero: pay === '₹0' }]} role="cell">{pay}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="promises">
+      <h3>In writing, for every project</h3>
+      <ul>
+        {
+          promises.map((p) => (
+            <li>
+              <Tick />
+              <span>{p}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="fine">
+        The full terms are on the <a href="/terms/" data-umami-event="read-terms">terms page</a> and the{' '}
+        <a href="/refunds/" data-umami-event="read-refunds">refund policy</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ledger {
+    border-top: 2px solid var(--ink);
+    background: var(--paper-2);
+  }
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr) 90px;
+    gap: 0 24px;
+    align-items: baseline;
+    padding: 16px 16px;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .head {
+    padding-block: 10px;
+    border-bottom: 3px double var(--ink);
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .head span:last-child,
+  .pay {
+    text-align: right;
+  }
+  .stage {
+    font-weight: 600;
+  }
+  .n {
+    margin-right: 10px;
+    color: var(--red);
+    font-weight: 400;
+    font-size: 0.85rem;
+  }
+  .what {
+    color: var(--ink-2);
+  }
+  .pay {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  .pay.zero {
+    color: var(--wa);
+  }
+  @media (max-width: 759px) {
+    .head {
+      display: none;
+    }
+    .row {
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas:
+        'stage pay'
+        'what what';
+      gap: 4px 16px;
+      padding: 14px 12px;
+    }
+    .stage {
+      grid-area: stage;
+    }
+    .what {
+      grid-area: what;
+      font-size: 0.95rem;
+    }
+    .pay {
+      grid-area: pay;
+    }
+  }
+  .promises {
+    margin-top: clamp(32px, 4vw, 48px);
+    max-width: 52em;
+  }
+  h3 {
+    margin-bottom: 14px;
+  }
+  ul {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    align-items: start;
+  }
+  li :global(.tick) {
+    margin-top: 2px;
+  }
+  .fine {
+    margin-top: 18px;
+    font-size: 0.95rem;
+    color: var(--ink-2);
+  }
+</style>

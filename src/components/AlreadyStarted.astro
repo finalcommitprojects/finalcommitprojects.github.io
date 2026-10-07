@@ -1,0 +1,86 @@
+---
+import { wa } from '../data/site';
+import Icon from './Icon.astro';
+
+const help: [string, string][] = [
+  ['Stuck on a bug or a module', "We find what's broken and fix it with you, so you understand why it broke."],
+  ['Make it review-ready', 'Add the features your guide asked for, tidy the UI, and get the demo running reliably.'],
+  ['Report, PPT and diagrams', "For the project you've already built, in your college's format."],
+  ['Understand your own code', 'A walkthrough of the code you have, with viva questions and answers for it.'],
+  ['Get it online', 'Deploy it with a live link for your review and your resume.'],
+];
+---
+
+<section class="sec" id="started" aria-labelledby="started-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="started-title"><span class="dot" aria-hidden="true"></span>Already working on a project?</h2>
+      <p>
+        Bring it. If you've picked a topic or started building, we help with the part you need and build on what you have, without
+        starting over.
+      </p>
+    </div>
+
+    <ul class="cards">
+      {
+        help.map(([t, d]) => (
+          <li>
+            <h3>{t}</h3>
+            <p>{d}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="foot">
+      <p>
+        Same rules as a full project: a written quote first, and you pay only after you've seen the work. Send us your code (a GitHub
+        link or a zip) and what your guide wants.
+      </p>
+      <a
+        class="btn btn-wa"
+        data-umami-event="whatsapp"
+        data-umami-event-location="already-started"
+        href={wa("Hi Final Commit, I've already started my project and I need help with part of it.")}
+        ><Icon name="wa" />Get help with my project</a
+      >
+    </div>
+  </div>
+</section>
+
+<style>
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .cards li {
+    padding: 18px 18px 20px;
+    background: var(--paper-2);
+    border-top: 3px solid var(--ink);
+    border-radius: 2px;
+  }
+  h3 {
+    margin-bottom: 6px;
+    font-size: 1.05rem;
+  }
+  .cards p {
+    color: var(--ink-2);
+    font-size: 0.97rem;
+  }
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 28px;
+    margin-top: 28px;
+  }
+  .foot p {
+    flex: 1 1 380px;
+    max-width: 40em;
+    color: var(--ink-2);
+  }
+</style>
