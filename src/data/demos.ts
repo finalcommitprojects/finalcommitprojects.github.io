@@ -47,6 +47,17 @@ export const demos: Demo[] = [
     thumb: '/demos/rag-helpdesk.png',
     badge: 'Live demo',
   },
+  {
+    projectId: 10,
+    slug: 'expense-splitter',
+    title: 'Expense Splitter (Android app)',
+    kind: 'Android · Kotlin, Compose, Room',
+    blurb: 'Split bills with roommates, settle up in the fewest payments, and pay through any UPI app. Download the signed APK and try it on your phone.',
+    live: 'https://finalcommitprojects.github.io/demo-expense-splitter/',
+    code: 'https://github.com/finalcommitprojects/demo-expense-splitter',
+    thumb: '/demos/expense-splitter.png',
+    badge: 'Android APK',
+  },
 ];
 
 export const demoFor = (projectId: number) => demos.find((d) => d.projectId === projectId);
