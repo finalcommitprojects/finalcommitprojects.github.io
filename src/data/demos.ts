@@ -36,6 +36,17 @@ export const demos: Demo[] = [
     badge: 'Live demo',
     sample: 'https://github.com/finalcommitprojects/demo-lost-found/tree/main/samples',
   },
+  {
+    projectId: 36,
+    slug: 'rag-helpdesk',
+    title: 'College helpdesk chatbot (RAG)',
+    kind: 'NLP & generative AI · retrieval',
+    blurb: "Ask about a college's rules and get the answer from its handbook, with the exact page cited. Says so when the handbook doesn't cover a question.",
+    live: 'https://finalcommitprojects.github.io/demo-rag-helpdesk/',
+    code: 'https://github.com/finalcommitprojects/demo-rag-helpdesk',
+    thumb: '/demos/rag-helpdesk.png',
+    badge: 'Live demo',
+  },
 ];
 
 export const demoFor = (projectId: number) => demos.find((d) => d.projectId === projectId);
