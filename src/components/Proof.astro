@@ -10,9 +10,10 @@ import Icon from './Icon.astro';
         <div class="sec-head">
           <h2 id="proof-title">
             <span class="dot" aria-hidden="true" />
-            Real projects we've built
+            Sample projects we've built
           </h2>
-          <p>Open them, try them, read the code. Each is a sample of the work you'd get.</p>
+          <p>Final Commit started in October 2026. These samples show the kind of work you'd get: each one runs, and its code is public.</p>
+          <p class="swipe" aria-hidden="true">{demos.length} projects · swipe →</p>
         </div>
         <ul class="cards">
           {demos.map((d) => (
@@ -108,8 +109,17 @@ import Icon from './Icon.astro';
     width: 1em;
     height: 1em;
   }
+  .swipe {
+    display: none;
+  }
   /* phones: swipe sideways through the demos */
   @media (max-width: 759px) {
+    .swipe {
+      display: block;
+      font-family: var(--f-mono);
+      font-size: 0.8rem;
+      color: var(--red);
+    }
     .cards {
       display: flex;
       overflow-x: auto;

@@ -3,10 +3,20 @@ import { site, wa } from '../data/site';
 import Icon from './Icon.astro';
 ---
 
-<div class="mbar">
+<div class="mbar" id="mbar">
   <a class="btn btn-wa" data-umami-event="whatsapp" data-umami-event-location="mobile-bar" href={wa()}><Icon name="wa" />WhatsApp us</a>
   <a class="btn btn-line" data-umami-event="call" data-umami-event-location="mobile-bar" href={site.phoneHref}><Icon name="phone" />Call</a>
 </div>
+
+<script>
+  // Show the bar once the hero's call-to-action buttons have scrolled out of view.
+  const bar = document.getElementById('mbar');
+  const heroCta = document.querySelector('.hero .cta-row');
+  if (bar && heroCta && 'IntersectionObserver' in window) {
+    bar.classList.add('waiting');
+    new IntersectionObserver(([e]) => bar.classList.toggle('waiting', e.isIntersecting)).observe(heroCta);
+  }
+</script>
 
 <style>
   .mbar {
@@ -29,6 +39,17 @@ import Icon from './Icon.astro';
   }
   .mbar .btn-line {
     background: var(--paper-2);
+  }
+  .mbar {
+    transition: transform 0.2s ease;
+  }
+  .mbar.waiting {
+    transform: translateY(110%);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mbar {
+      transition: none;
+    }
   }
   @media (min-width: 760px) {
     .mbar {
