@@ -75,6 +75,18 @@ export const demos: Demo[] = [
     badge: 'Live demo',
     builtWith: 'A small blockchain in JavaScript (SHA-256 proof of work, ECDSA-signed votes, Merkle roots). The full version uses a Solidity contract on an Ethereum test network with MetaMask.',
   },
+  {
+    projectId: 54,
+    slug: 'phishing-url',
+    title: 'Phishing link checker',
+    kind: 'Cyber security · ML · Chrome extension',
+    blurb: 'Paste a link and see whether its address shows phishing signs, with every warning explained. Warns on 78% of live phishing links in testing. Comes with a Chrome extension.',
+    live: 'https://finalcommitprojects.github.io/demo-phishing-url/',
+    code: 'https://github.com/finalcommitprojects/demo-phishing-url',
+    thumb: '/demos/phishing-url.png',
+    badge: 'Live demo',
+    builtWith: 'scikit-learn logistic regression trained on the PhiUSIIL dataset, with JavaScript inference in the page and a Chrome extension. The full version adds a Flask API, page-content checks and domain-age lookups.',
+  },
 ];
 
 export const demoFor = (projectId: number) => demos.find((d) => d.projectId === projectId);
