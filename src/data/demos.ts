@@ -87,6 +87,18 @@ export const demos: Demo[] = [
     badge: 'Live demo',
     builtWith: 'scikit-learn logistic regression trained on the PhiUSIIL dataset, with JavaScript inference in the page and a Chrome extension. The full version adds a Flask API, page-content checks and domain-age lookups.',
   },
+  {
+    projectId: 29,
+    slug: 'face-attendance',
+    title: 'Face recognition attendance',
+    kind: 'Computer vision · runs in the browser',
+    blurb: 'Register students once, then mark the class present from the camera or a class photo. Each student blinks, so a printed photo can\'t stand in for them. Only 128 numbers per face are stored.',
+    live: 'https://finalcommitprojects.github.io/demo-face-attendance/',
+    code: 'https://github.com/finalcommitprojects/demo-face-attendance',
+    thumb: '/demos/face-attendance.png',
+    badge: 'Live demo',
+    builtWith: 'face-api.js for recognition and MediaPipe for the blink check, in the browser. The full version runs OpenCV and a face-recognition model on a Flask server with SQLite.',
+  },
 ];
 
 export const demoFor = (projectId: number) => demos.find((d) => d.projectId === projectId);
